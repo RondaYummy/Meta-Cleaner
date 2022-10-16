@@ -7,13 +7,15 @@ import { environment } from '../environments/environment';
 import { EthernetPopupsComponent } from './ethernet-popups/ethernet-popups.component';
 import { SelectedPhotoComponent } from './selected-photo/selected-photo.component';
 import { SubmitSelectedPhotoComponent } from './submit-selected-photo/submit-selected-photo.component';
+import { ClearMetadataComponent } from './clear-metadata/clear-metadata.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EthernetPopupsComponent,
     SelectedPhotoComponent,
-    SubmitSelectedPhotoComponent
+    SubmitSelectedPhotoComponent,
+    ClearMetadataComponent
   ],
   imports: [
     BrowserModule,

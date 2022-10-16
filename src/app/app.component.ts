@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   isWebVersion = true;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
+  clearMetadata: boolean = false;
 
   ngOnInit() {
     this.checkEthernetStatus();
@@ -75,5 +76,12 @@ export class AppComponent implements OnInit {
   continueSelected(filesList: Array<string>) {
     this.continueListPhotos = filesList;
     this.selectedPhotos = [];
+  }
+
+  clearMetadataFn(clearList: Array<string>) {
+    if (clearList && clearList.length) {
+      this.clearMetadata = true;
+      this.continueListPhotos = clearList;
+    }
   }
 }

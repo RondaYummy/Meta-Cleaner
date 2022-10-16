@@ -1,0 +1,78 @@
+.fit-popup-backgroung {
+  background: rgba(217, 228, 241, 0.1);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+
+  .popup {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 237px;
+    width: 80%;
+    margin-left: -10px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 16px 28px;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F3F8FC;
+    box-shadow: 4px 4px 10px rgba(54, 80, 108, 0.1);
+    border-radius: 20px 20px 0px 0px;
+
+    p {
+      text-align: center;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      color: #273B50;
+    }
+
+    .cancel-btn {
+      width: 112px;
+      height: 41px;
+      background: #D9E4F1;
+      border: 0.5px solid #C7D5E9;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      color: #273B50;
+      margin-top: 40px;
+    }
+  }
+
+}
+
+.clear-metadata-head {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #273B50;
+  width: 100%;
+
+  .percent {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}

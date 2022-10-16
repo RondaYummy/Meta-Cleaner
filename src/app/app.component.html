@@ -43,6 +43,7 @@
     *ngIf="continueListPhotos && continueListPhotos.length"
     [fileList]="continueListPhotos"
     (close)="closeSelected($event)"
+    (clear)="clearMetadataFn($event)"
   >
   </app-selected-photo>
 
@@ -52,6 +53,10 @@
     (continue)="continueSelected($event)"
   >
   </app-submit-selected-photo>
+
+  <app-clear-metadata
+    *ngIf="clearMetadata && continueListPhotos && continueListPhotos.length"
+  ></app-clear-metadata>
 </div>
 <footer
   class="footer"
