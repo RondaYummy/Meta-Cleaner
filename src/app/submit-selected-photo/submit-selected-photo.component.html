@@ -1,17 +1,25 @@
 <div class="fit-popup-backgroung">
   <div class="popup">
     <div class="head-continue-popup">
-      <div>Обрані фото 3 з 10</div>
+      <div>
+        Обрані фото
+        {{
+          selectedPhotosForContinue && selectedPhotosForContinue.length
+            ? selectedPhotosForContinue.length
+            : 0
+        }}
+        з 10
+      </div>
       <div class="continue" (click)="continueClear()">Продовжити</div>
     </div>
 
     <div class="image-list">
-      <img
-        [src]="photo"
-        *ngFor="let photo of fileList; let i = index"
-        (click)="selectPhoto(photo)"
+      <div
         [class.selected]="isSelectedPhoto(photo)"
-      />
+        *ngFor="let photo of fileList; let i = index"
+      >
+        <img [src]="photo" (click)="selectPhoto(photo)" />
+      </div>
     </div>
   </div>
 </div>

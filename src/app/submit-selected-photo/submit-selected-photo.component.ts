@@ -8,20 +8,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SubmitSelectedPhotoComponent implements OnInit {
   @Input() fileList: Array<string> = [];
   @Output() continue = new EventEmitter<Array<string>>();
-  selectedPhotosForContinue: Array<string> = this.fileList;
+  selectedPhotosForContinue: Array<string> = [];
 
   constructor() {}
-
-  ngOnInit(): void {
-    this.selectedPhotosForContinue = this.fileList;
-  }
+  ngOnInit(): void {}
 
   continueClear() {
     this.continue.emit(this.selectedPhotosForContinue);
   }
 
   selectPhoto(base64photo: string) {
-    debugger;
     const index = this.selectedPhotosForContinue.findIndex(
       (el) => el === base64photo
     );
@@ -30,6 +26,7 @@ export class SubmitSelectedPhotoComponent implements OnInit {
     } else {
       this.selectedPhotosForContinue.splice(index, 1);
     }
+    return;
   }
 
   isSelectedPhoto(photo: string) {

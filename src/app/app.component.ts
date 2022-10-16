@@ -14,8 +14,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.checkEthernetStatus();
-    console.log(this.selectedPhotos);
-
 
     console.group('Ukraine');
     console.info(
