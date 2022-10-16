@@ -1,0 +1,98 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-block {
+  margin: 0;
+  background: #F3F8FC;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #36506C;
+  height: 100%;
+
+  .downloaded-version {
+    @include flex-column;
+    flex-grow: 1;
+  }
+
+  .web-version {
+    @include flex-column;
+    flex-grow: 1;
+  }
+
+  .meta-block {
+    position: relative;
+  }
+
+  .meta-cleaner-btn {
+    @include flex-column;
+    width: 150px;
+    height: 150px;
+    background: #5375ED;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+
+    span {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+      color: #FFFFFF;
+    }
+  }
+
+  .ball {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    border-radius: 50%;
+  }
+
+  .ball.one {
+    width: 180px;
+    height: 180px;
+    background: #C7D5E9;
+    z-index: 19;
+  }
+
+  .ball.two {
+    width: 210px;
+    height: 210px;
+    background: #D9E4F1;
+    z-index: 18;
+    top: -28px;
+    left: -28px;
+  }
+
+  .ball.three {
+    width: 260px;
+    height: 260px;
+    top: -52px;
+    left: -52px;
+    background: #ECF4F9;
+  }
+
+}
+
+.footer {
+  @include flex-column;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  height: 50px;
+}
+
+.header {
+  @include flex-column;
+  flex-shrink: 0;
+  height: 50px;
+}

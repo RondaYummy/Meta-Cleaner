@@ -1,0 +1,30 @@
+<header class="header">MetaCleaner</header>
+
+<div class="main-block">
+  <div class="web-version" *ngIf="isWebVersion">It's web version site</div>
+
+  <div class="downloaded-version" *ngIf="!isWebVersion">
+    <div class="meta-block">
+      <div class="meta-cleaner-btn">
+        <img
+          src="../assets//images/search-img.svg"
+          alt="meta cleaner search image"
+        />
+        <span>MetaCleaner</span>
+      </div>
+
+      <div class="ball one"></div>
+      <div class="ball two"></div>
+      <div class="ball three"></div>
+    </div>
+
+    <div class="online-block" *ngIf="isOnline">Online</div>
+    <div class="dont-online-block" *ngIf="!isOnline">Offline</div>
+  </div>
+</div>
+<footer class="footer">
+  <span class="powered-by">by CyberRegiment</span>
+</footer>
+
+<app-ethernet-popups [isOnline]="isOnline" [isWebVersion]="isWebVersion">
+</app-ethernet-popups>
