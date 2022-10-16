@@ -2,17 +2,21 @@
   background: rgba(217, 228, 241, 0.1);
   backdrop-filter: blur(2px);
   z-index: 100;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
 
   .popup {
     position: absolute;
     bottom: 60px;
-    left: 45%;
+    left: calc(50% - 200px);
     height: 153px;
-    left: 16px;
+    max-width: 328px;
     background: #FFFFFF;
     border-radius: 20px;
-    z-index: 110;
     padding: 16px 28px;
+    z-index: 110;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +24,11 @@
 
     p {
       text-align: center;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      color: #273B50;
     }
 
     .check-ethernet-btn {
@@ -37,5 +46,11 @@
       color: #D9E4F1;
       cursor: pointer;
     }
+  }
+
+  .success, .reject {
+    width: 328px;
+    height: 232px;
+    left: calc(50% - 200px);
   }
 }

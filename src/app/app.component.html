@@ -26,5 +26,10 @@
   <span class="powered-by">by CyberRegiment</span>
 </footer>
 
-<app-ethernet-popups [isOnline]="isOnline" [isWebVersion]="isWebVersion">
+<app-ethernet-popups
+  *ngIf="isOnline && !isWebVersion"
+  [isOnline]="isOnline"
+  [isWebVersion]="isWebVersion"
+  (newIsOnline)="newIsOnline($event)"
+>
 </app-ethernet-popups>

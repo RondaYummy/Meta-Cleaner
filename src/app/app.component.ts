@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
   isWebVersion = true;
 
   ngOnInit() {
+    this.checkEthernetStatus();
+
     console.group('Ukraine');
     console.info(
       '%c        Все буде Україна!        ',
@@ -24,9 +26,10 @@ export class AppComponent implements OnInit {
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
       this.isWebVersion = false;
-      setInterval(() => {
-        this.checkEthernetStatus();
-      }, 3000);
+      // setInterval(() => {
+      //   this.checkEthernetStatus();
+      // }, 3000);
+      // TODO enable with interval
     } else {
       this.isWebVersion = true;
     }
@@ -38,5 +41,10 @@ export class AppComponent implements OnInit {
     } else {
       this.isOnline = true;
     }
+  }
+
+  newIsOnline(event: boolean) {
+    console.log(event);
+    this.isOnline = event;
   }
 }
