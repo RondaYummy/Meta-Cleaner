@@ -1,28 +1,50 @@
 <header class="header">MetaCleaner</header>
-
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">It's web version site</div>
 
-  <div class="downloaded-version" *ngIf="!isWebVersion">
+  <div
+    class="downloaded-version"
+    *ngIf="!isWebVersion && (!selectedPhotos || !selectedPhotos?.length)"
+  >
     <div class="meta-block">
-      <div class="meta-cleaner-btn">
+      <input
+        id="file-input"
+        type="file"
+        multiple="multiple"
+        (change)="handleFiles($event)"
+      />
+      <label for="file-input" class="meta-cleaner-btn">
         <img
           src="../assets//images/search-img.svg"
           alt="meta cleaner search image"
         />
-        <span>MetaCleaner</span>
-      </div>
+        <span *ngIf="isOnline">MetaCleaner</span>
+        <span *ngIf="!isOnline">Обрати фото</span>
+      </label>
 
       <div class="ball one"></div>
       <div class="ball two"></div>
       <div class="ball three"></div>
     </div>
 
-    <div class="online-block" *ngIf="isOnline">Online</div>
-    <div class="dont-online-block" *ngIf="!isOnline">Offline</div>
+    <div class="open-camera" *ngIf="!isOnline">
+      <p>або</p>
+      <div class="get-photo">
+        <img src="../assets/images/camera.svg" alt="зробити фото" />
+        <span>Зробити фото</span>
+      </div>
+    </div>
   </div>
+
+  <app-selected-photo
+    class="selected-on"
+    *ngIf="selectedPhotos && selectedPhotos.length"
+    [fileList]="selectedPhotos"
+    (close)="closeSelected($event)"
+  >
+  </app-selected-photo>
 </div>
-<footer class="footer">
+<footer class="footer" *ngIf="!selectedPhotos || !selectedPhotos?.length">
   <span class="powered-by">by CyberRegiment</span>
 </footer>
 
@@ -33,3 +55,4 @@
   (newIsOnline)="newIsOnline($event)"
 >
 </app-ethernet-popups>
+<input type="file" accept="image/*;capture=camera" />

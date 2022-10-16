@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+#file-input {
+  display: none;
+}
+
 .main-block {
   margin: 0;
   background: #F3F8FC;
@@ -18,6 +22,35 @@
   text-align: center;
   color: #36506C;
   height: 100%;
+  width: 100%;
+
+  .open-camera {
+    position: relative;
+    z-index: 101;
+    margin-top: 71px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #36506C;
+
+
+    .get-photo {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #273B50;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 20px;
+        height: 18px;
+        margin-right: 10px;
+      }
+    }
+  }
 
   .downloaded-version {
     @include flex-column;
@@ -95,4 +128,9 @@
   @include flex-column;
   flex-shrink: 0;
   height: 50px;
+}
+
+.selected-on {
+  height: 100%;
+  flex-grow: 1;
 }

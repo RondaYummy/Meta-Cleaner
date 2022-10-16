@@ -1,0 +1,12 @@
+<div class="files-list-block">
+  <div class="selected-head">
+    <span>Обрані фото</span>
+    <img src="../../assets/images/close.png" class="close-btn" (click)="closeSelected()" />
+  </div>
+
+  <div class="file-list">
+    <div class="file-item" *ngFor="let file of fileList; let i = index">
+      {{ i }}
+    </div>
+  </div>
+</div>

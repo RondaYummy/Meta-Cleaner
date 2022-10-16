@@ -1,0 +1,39 @@
+.files-list-block {
+  background: #FFFFFF;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 100%;
+
+  .file-list {
+    display: flex;
+    justify-content: flex-start;
+
+    .file-item {
+      width: 104px;
+      height: 100px;
+      border-radius: 8px;
+      background-color: aliceblue;
+      margin: 4px;
+    }
+  }
+}
+
+.close-btn {
+  cursor: pointer;
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.selected-head {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 52px;
+  color: #273B50;
+  position: relative;
+  height: 65px;
+}

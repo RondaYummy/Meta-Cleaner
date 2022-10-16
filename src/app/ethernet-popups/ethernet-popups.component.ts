@@ -20,10 +20,8 @@ export class EthernetPopupsComponent implements OnInit {
     this.isChecked = true;
     if (!navigator.onLine) {
       this.isOnlineValue = false;
-      // this.newIsOnline.emit(this.isOnline);
     } else {
       this.isOnlineValue = true;
-      // this.newIsOnline.emit(this.isOnline);
     }
   }
 

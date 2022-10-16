@@ -9,6 +9,7 @@ export class AppComponent implements OnInit {
   title = 'meta-cleaner';
   isOnline = true;
   isWebVersion = true;
+  selectedPhotos: Array<ArrayBuffer> = [];
 
   ngOnInit() {
     this.checkEthernetStatus();
@@ -26,10 +27,6 @@ export class AppComponent implements OnInit {
 
     if (window.matchMedia('(display-mode: standalone)').matches) {
       this.isWebVersion = false;
-      // setInterval(() => {
-      //   this.checkEthernetStatus();
-      // }, 3000);
-      // TODO enable with interval
     } else {
       this.isWebVersion = true;
     }
@@ -44,7 +41,30 @@ export class AppComponent implements OnInit {
   }
 
   newIsOnline(event: boolean) {
-    console.log(event);
     this.isOnline = event;
+    setInterval(() => {
+      this.checkEthernetStatus();
+    }, 3000);
+  }
+
+  uploadFile(file: File) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.selectedPhotos.push(reader.result as ArrayBuffer);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  handleFiles(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const files = target.files as FileList;
+    Array.from(files).forEach((file: File) => {
+      this.uploadFile(file);
+    });
+  }
+
+  closeSelected(event: boolean) {
+    console.log(event);
+    this.selectedPhotos = [];
   }
 }
