@@ -84,4 +84,11 @@ export class AppComponent implements OnInit {
       this.continueListPhotos = clearList;
     }
   }
+
+  cancelClearMetadata(cancel: boolean) {
+    if (cancel) {
+      this.clearMetadata = false;
+      this.continueListPhotos = [];
+    }
+  }
 }

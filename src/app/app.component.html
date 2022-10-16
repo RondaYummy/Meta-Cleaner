@@ -56,6 +56,7 @@
 
   <app-clear-metadata
     *ngIf="clearMetadata && continueListPhotos && continueListPhotos.length"
+    (cancel)="cancelClearMetadata($event)"
   ></app-clear-metadata>
 </div>
 <footer
