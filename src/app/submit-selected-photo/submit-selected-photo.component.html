@@ -1,0 +1,17 @@
+<div class="fit-popup-backgroung">
+  <div class="popup">
+    <div class="head-continue-popup">
+      <div>Обрані фото 3 з 10</div>
+      <div class="continue" (click)="continueClear()">Продовжити</div>
+    </div>
+
+    <div class="image-list">
+      <img
+        [src]="photo"
+        *ngFor="let photo of fileList; let i = index"
+        (click)="selectPhoto(photo)"
+        [class.selected]="isSelectedPhoto(photo)"
+      />
+    </div>
+  </div>
+</div>

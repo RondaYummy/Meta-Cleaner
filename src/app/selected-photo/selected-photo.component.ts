@@ -6,14 +6,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./selected-photo.component.scss'],
 })
 export class SelectedPhotoComponent implements OnInit {
-  @Input() fileList: Array<ArrayBuffer> = [];
+  @Input() fileList: Array<string> = [];
   @Output() close = new EventEmitter<boolean>();
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.fileList);
-  }
+  ngOnInit(): void {}
 
   closeSelected() {
     this.close.emit(true);

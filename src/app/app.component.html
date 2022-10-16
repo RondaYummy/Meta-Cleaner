@@ -4,7 +4,9 @@
 
   <div
     class="downloaded-version"
-    *ngIf="!isWebVersion && (!selectedPhotos || !selectedPhotos?.length)"
+    *ngIf="
+      !isWebVersion && (!continueListPhotos || !continueListPhotos?.length)
+    "
   >
     <div class="meta-block">
       <input
@@ -38,13 +40,24 @@
 
   <app-selected-photo
     class="selected-on"
-    *ngIf="selectedPhotos && selectedPhotos.length"
-    [fileList]="selectedPhotos"
+    *ngIf="continueListPhotos && continueListPhotos.length"
+    [fileList]="continueListPhotos"
     (close)="closeSelected($event)"
   >
   </app-selected-photo>
+
+  <!-- TODO чому при виборі фото, selectedPhotos нема? -->
+  <app-submit-selected-photo
+    *ngIf="selectedPhotos && selectedPhotos.length"
+    [fileList]="selectedPhotos"
+    (continue)="continueSelected($event)"
+  >
+  </app-submit-selected-photo>
 </div>
-<footer class="footer" *ngIf="!selectedPhotos || !selectedPhotos?.length">
+<footer
+  class="footer"
+  *ngIf="!continueListPhotos || !continueListPhotos?.length"
+>
   <span class="powered-by">by CyberRegiment</span>
 </footer>
 

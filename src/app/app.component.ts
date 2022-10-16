@@ -9,10 +9,13 @@ export class AppComponent implements OnInit {
   title = 'meta-cleaner';
   isOnline = true;
   isWebVersion = true;
-  selectedPhotos: Array<ArrayBuffer> = [];
+  selectedPhotos: Array<string> = [];
+  continueListPhotos: Array<string> = [];
 
   ngOnInit() {
     this.checkEthernetStatus();
+    console.log(this.selectedPhotos);
+
 
     console.group('Ukraine');
     console.info(
@@ -50,21 +53,29 @@ export class AppComponent implements OnInit {
   uploadFile(file: File) {
     const reader = new FileReader();
     reader.onload = () => {
-      this.selectedPhotos.push(reader.result as ArrayBuffer);
+      this.selectedPhotos.push(reader.result as string);
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
   }
 
   handleFiles(event: Event) {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
-    Array.from(files).forEach((file: File) => {
-      this.uploadFile(file);
-    });
+    if (files.length < 10) {
+      Array.from(files).forEach((file: File) => {
+        this.uploadFile(file);
+      });
+    }
   }
 
   closeSelected(event: boolean) {
-    console.log(event);
+    if (event) {
+      this.continueListPhotos = [];
+    }
+  }
+
+  continueSelected(filesList: Array<string>) {
+    this.continueListPhotos = filesList;
     this.selectedPhotos = [];
   }
 }
