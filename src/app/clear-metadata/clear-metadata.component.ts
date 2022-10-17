@@ -7,6 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import * as piexif from 'piexifjs';
+import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-clear-metadata',
@@ -14,13 +15,14 @@ import * as piexif from 'piexifjs';
   styleUrls: ['./clear-metadata.component.scss'],
 })
 export class ClearMetadataComponent implements OnInit {
-  @Input() photoList!: Array<string>;
+  @Input() photoList: Array<string>;
   @Output() cancel = new EventEmitter<boolean>();
 
   securedString = 'Secured by Cyber Regiment! Glory To Ukraine!';
   zeroth: any = {};
   exif: any = {};
   gps: any = {};
+  progressFileNumber: number = 0;
 
   // ZEROTH
   replaceZerothStrings = [
@@ -162,30 +164,33 @@ export class ClearMetadataComponent implements OnInit {
     'GPSAreaInformation',
     'GPSHPositioningError',
   ];
-  // TODO @Inject(piexif)
-  // Error: ERROR NullInjectorError: R3InjectorError(AppModule)[[object Object] -> [object Object] -> [object Object]]:
-  // NullInjectorError: No provider for [object Object]!
-  constructor(@Inject(piexif) private piexif: any) {}
+
+  constructor() {}
 
   ngOnInit(): void {
     this.replaceZerothStrings.forEach((prop: string) => {
-      this.zeroth[this.piexif.ImageIFD[prop]] = this.securedString;
+      this.zeroth[piexif.ImageIFD[prop]] = this.securedString;
     });
 
     this.replaceExifStrings.forEach((prop) => {
-      this.exif[this.piexif.ExifIFD[prop]] = this.securedString;
+      this.exif[piexif.ExifIFD[prop]] = this.securedString;
     });
 
     this.replaceGPSStrings.forEach((prop) => {
-      this.gps[this.piexif.GPSIFD[prop]] = this.securedString;
+      this.gps[piexif.GPSIFD[prop]] = this.securedString;
     });
 
     const exifObj = { '0th': this.zeroth, Exif: this.exif, GPS: this.gps };
     const exifbytes = piexif.dump(exifObj);
-    const data = this.photoList[0].toString(); // TODO .toString('binary');???
-    const newData = piexif.insert(exifbytes, data);
-    const newJpeg = Buffer.from(newData, 'binary');
-    console.log(newJpeg, 'newJpeg');
+
+    for (let index = 0; index < this.photoList.length; index++) {
+      this.progressFileNumber = index + 1;
+      piexif.remove(this.photoList[index]); // Clear ALL metadata
+      const newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
+      const newJpeg = Buffer.from(newData, 'binary');
+      const file = new Blob([newJpeg], { type: 'image/jpg' });
+      console.log(file, 'file');
+    }
   }
 
   cancelClearMetadata() {

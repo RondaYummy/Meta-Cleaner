@@ -2,13 +2,24 @@
   <div class="popup">
     <div class="clear-metadata-head">
       <div>Видалення метаданих . . .</div>
-      <div class="percent">60%</div>
+      <div class="percent">
+        {{ (progressFileNumber / photoList.length) * 100 }}%
+      </div>
     </div>
 
-    <p>progress bar here...</p>
+    <div class="animated-progress">
+      <span
+        data-progress="85"
+        [style.width]="(progressFileNumber / photoList.length) * 100 + '%'"
+      >
+      </span>
+    </div>
     <div class="info-block">
-      <div>Фото залишилось: 1</div>
-      <div>Завершено: 2</div>
+      <div>
+        Фото залишилось:
+        {{ photoList.length - progressFileNumber }}
+      </div>
+      <div>Завершено: {{ progressFileNumber }}</div>
     </div>
 
     <button type="button" class="cancel-btn" (click)="cancelClearMetadata()">
