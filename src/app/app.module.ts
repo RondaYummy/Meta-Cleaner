@@ -8,6 +8,7 @@ import { EthernetPopupsComponent } from './ethernet-popups/ethernet-popups.compo
 import { SelectedPhotoComponent } from './selected-photo/selected-photo.component';
 import { SubmitSelectedPhotoComponent } from './submit-selected-photo/submit-selected-photo.component';
 import { ClearMetadataComponent } from './clear-metadata/clear-metadata.component';
+import { SuccessModalComponent } from './success-modal/success-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ClearMetadataComponent } from './clear-metadata/clear-metadata.componen
     EthernetPopupsComponent,
     SelectedPhotoComponent,
     SubmitSelectedPhotoComponent,
-    ClearMetadataComponent
+    ClearMetadataComponent,
+    SuccessModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as piexif from 'piexifjs';
 import { Buffer } from 'buffer';
 
@@ -17,12 +10,14 @@ import { Buffer } from 'buffer';
 export class ClearMetadataComponent implements OnInit {
   @Input() photoList: Array<string>;
   @Output() cancel = new EventEmitter<boolean>();
+  @Output() successClear = new EventEmitter<Array<Blob>>();
 
   securedString = 'Secured by Cyber Regiment! Glory To Ukraine!';
   zeroth: any = {};
   exif: any = {};
   gps: any = {};
   progressFileNumber: number = 0;
+  photosWithClearMetadata: Array<Blob> = [];
 
   // ZEROTH
   replaceZerothStrings = [
@@ -180,21 +175,28 @@ export class ClearMetadataComponent implements OnInit {
       this.gps[piexif.GPSIFD[prop]] = this.securedString;
     });
 
-    const exifObj = { '0th': this.zeroth, Exif: this.exif, GPS: this.gps };
-    const exifbytes = piexif.dump(exifObj);
-
-    for (let index = 0; index < this.photoList.length; index++) {
-      this.progressFileNumber = index + 1;
-      piexif.remove(this.photoList[index]); // Clear ALL metadata
-      const newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
-      const newJpeg = Buffer.from(newData, 'binary');
-      const file = new Blob([newJpeg], { type: 'image/jpg' });
-      console.log(file, 'file');
-    }
+    setTimeout(() => {
+      this.clearMetadata(); // FIXME ?
+    }, 0);
   }
 
   cancelClearMetadata() {
     console.log('Cancel...');
     this.cancel.emit(true);
+  }
+
+  clearMetadata() {
+    const exifObj = { '0th': this.zeroth, Exif: this.exif, GPS: this.gps };
+    const exifbytes = piexif.dump(exifObj);
+
+    for (let index = 0; index < this.photoList.length; index++) {
+      piexif.remove(this.photoList[index]); // Clear ALL metadata
+      const newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
+      const newJpeg = Buffer.from(newData, 'binary');
+      const file = new Blob([newJpeg], { type: 'image/jpg' });
+      this.photosWithClearMetadata.push(file);
+      this.progressFileNumber = index + 1;
+    }
+    this.successClear.emit(this.photosWithClearMetadata);
   }
 }

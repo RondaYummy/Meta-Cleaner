@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   clearMetadata: boolean = false;
+  photosWithClearMetadata: Array<Blob>;
 
   ngOnInit() {
     this.checkEthernetStatus();
@@ -90,5 +91,12 @@ export class AppComponent implements OnInit {
       this.clearMetadata = false;
       this.continueListPhotos = [];
     }
+  }
+
+  successClearMetadata(clearedArray: Array<Blob>) {
+    this.continueListPhotos = [];
+    this.photosWithClearMetadata = clearedArray;
+    console.log(this.photosWithClearMetadata, 'this.photosWithClearMetadata');
+
   }
 }

@@ -58,7 +58,11 @@
     *ngIf="clearMetadata && continueListPhotos && continueListPhotos.length"
     [photoList]="continueListPhotos"
     (cancel)="cancelClearMetadata($event)"
-  ></app-clear-metadata>
+    (successClear)="successClearMetadata($event)"
+  >
+  </app-clear-metadata>
+
+  <app-success-modal *ngIf="photosWithClearMetadata && photosWithClearMetadata.length"></app-success-modal>
 </div>
 <footer
   class="footer"
