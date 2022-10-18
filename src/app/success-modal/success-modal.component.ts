@@ -14,4 +14,11 @@ export class SuccessModalComponent implements OnInit {
   goToHome() {
     this.goHome.emit(true);
   }
+
+  // async saveImages() {
+  //   await self.showSaveFilePicker({
+  //     id: 'importImage',
+  //     startIn: 'pictures',
+  //   });
+  // }
 }

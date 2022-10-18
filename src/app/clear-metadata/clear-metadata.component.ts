@@ -181,7 +181,6 @@ export class ClearMetadataComponent implements OnInit {
   }
 
   cancelClearMetadata() {
-    console.log('Cancel...');
     this.cancel.emit(true);
   }
 

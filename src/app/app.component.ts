@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,15 @@ export class AppComponent implements OnInit {
   clearMetadata: boolean = false;
   photosWithClearMetadata: Array<Blob>;
 
+  @ViewChild('video') elVideo: any;
+  stream: any;
+  imageCapture: any;
+
   ngOnInit() {
     this.checkEthernetStatus();
+    setInterval(() => {
+      this.checkEthernetStatus();
+    }, 5000);
 
     console.group('Ukraine');
     console.info(
@@ -36,18 +43,50 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (!navigator.onLine) {
+    if (navigator.onLine) {
       this.isOnline = false;
     } else {
       this.isOnline = true;
     }
+
+    // const app = {
+    //   appName: 'Text Editor',
+    //   file: {
+    //     handle: null,
+    //     name: null,
+    //     isModified: false,
+    //   },
+    //   options: {
+    //     captureTabs: true,
+    //     fontSize: 14,
+    //     monoSpace: false,
+    //     wordWrap: true,
+    //   },
+    //   hasFSAccess: 'chooseFileSystemEntries' in window ||
+    //                'showOpenFilePicker' in window,
+    //   isMac: navigator.userAgent.includes('Mac OS X'),
+    // };
+
+    // app.saveFile = async () => {
+    //   try {
+    //     if (!app.file.handle) {
+    //       return await app.saveFileAs();
+    //     }
+    //     gaEvent('FileAction', 'Save');
+    //     await writeFile(app.file.handle, app.getText());
+    //     app.setModified(false);
+    //   } catch (ex) {
+    //     gaEvent('Error', 'FileSave', ex.name);
+    //     const msg = 'Unable to save file';
+    //     console.error(msg, ex);
+    //     alert(msg);
+    //   }
+    //   app.setFocus();
+    // };
   }
 
   newIsOnline(event: boolean) {
     this.isOnline = event;
-    setInterval(() => {
-      this.checkEthernetStatus();
-    }, 3000);
   }
 
   uploadFile(file: File) {
@@ -104,5 +143,28 @@ export class AppComponent implements OnInit {
       this.photosWithClearMetadata = [];
       this.clearMetadata = false;
     }
+  }
+
+  async takePhotoUser() {
+    this.stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+    });
+    const videoTracks = this.stream.getVideoTracks();
+    const track = videoTracks[0];
+    console.log(`Getting video from: ${track.label}`);
+    this.imageCapture = new ImageCapture(track);
+    this.elVideo.nativeElement.style = 'display: block;';
+    this.elVideo.nativeElement.srcObject = this.stream;
+  }
+
+  takePhoto() {
+    this.imageCapture
+      .takePhoto()
+      .then(function (blob: any) {
+        console.log(blob, 'take photo');
+      })
+      .catch(function (error: any) {
+        console.log('takePhoto() error: ', error);
+      });
   }
 }

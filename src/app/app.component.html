@@ -4,10 +4,17 @@
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">It's web version site</div>
 
+  <video #video name="video" autoplay style="display: none"></video>
+  <button *ngIf="stream" type="button" (click)="takePhoto()">
+    Зробити фото
+  </button>
+
   <div
     class="downloaded-version"
     *ngIf="
-      !isWebVersion && (!continueListPhotos || !continueListPhotos?.length)
+      !isWebVersion &&
+      (!continueListPhotos || !continueListPhotos?.length) &&
+      !stream
     "
   >
     <div class="meta-block">
@@ -33,7 +40,7 @@
 
     <div class="open-camera" *ngIf="!isOnline">
       <p>або</p>
-      <div class="get-photo">
+      <div class="get-photo" (click)="takePhotoUser()">
         <img src="../assets/images/camera.svg" alt="зробити фото" />
         <span>Зробити фото</span>
       </div>
