@@ -1,4 +1,6 @@
-<header class="header">MetaCleaner</header>
+<header class="header">
+  <span>MetaCleaner</span>
+</header>
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">It's web version site</div>
 
@@ -62,7 +64,10 @@
   >
   </app-clear-metadata>
 
-  <app-success-modal *ngIf="photosWithClearMetadata && photosWithClearMetadata.length"></app-success-modal>
+  <app-success-modal
+    *ngIf="photosWithClearMetadata && photosWithClearMetadata.length"
+    (goHome)="goHome($event)"
+  ></app-success-modal>
 </div>
 <footer
   class="footer"

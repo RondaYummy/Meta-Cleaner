@@ -96,7 +96,13 @@ export class AppComponent implements OnInit {
   successClearMetadata(clearedArray: Array<Blob>) {
     this.continueListPhotos = [];
     this.photosWithClearMetadata = clearedArray;
-    console.log(this.photosWithClearMetadata, 'this.photosWithClearMetadata');
+  }
 
+  goHome(success: boolean) {
+    if (success) {
+      this.continueListPhotos = [];
+      this.photosWithClearMetadata = [];
+      this.clearMetadata = false;
+    }
   }
 }

@@ -12,7 +12,7 @@
     bottom: -15px;
     left: 0;
     height: 360px;
-    width: 96%;
+    width: 100%;
     margin-left: -10px;
     background: #FFFFFF;
     border-radius: 20px;
@@ -20,6 +20,7 @@
     z-index: 120;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 
     .head-continue-popup {
       display: flex;

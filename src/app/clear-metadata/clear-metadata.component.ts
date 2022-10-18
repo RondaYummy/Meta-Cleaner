@@ -176,7 +176,7 @@ export class ClearMetadataComponent implements OnInit {
     });
 
     setTimeout(() => {
-      this.clearMetadata(); // FIXME ?
+      this.clearMetadata(); // FIXME whi its work only with setTimeout 0?
     }, 0);
   }
 
