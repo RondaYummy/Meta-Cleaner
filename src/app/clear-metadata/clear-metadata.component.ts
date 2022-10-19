@@ -192,7 +192,7 @@ export class ClearMetadataComponent implements OnInit {
       piexif.remove(this.photoList[index]); // Clear ALL metadata
       const newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
       const newJpeg = Buffer.from(newData, 'binary');
-      const file = new Blob([newJpeg], { type: 'image/jpg' });
+      const file = new Blob([newJpeg], { type: 'image/jpg' }); // TODO jpg give from base64
       this.photosWithClearMetadata.push(file);
       this.progressFileNumber = index + 1;
     }
