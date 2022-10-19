@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import * as imageConversion from 'image-conversion';
+import Jimp from 'jimp/es';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +45,7 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (!navigator.onLine) {
+    if (navigator.onLine) {
       this.isOnline = false;
     } else {
       this.isOnline = true;
@@ -157,10 +159,12 @@ export class AppComponent implements OnInit {
     this.elVideo.nativeElement.srcObject = this.stream;
   }
 
-  blobToBase64(blob: any): Promise<any> {
+  blobToBase64(blob: Blob | File): Promise<any> {
     return new Promise((resolve, _) => {
       const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
+      reader.onload = function (e: any) {
+        return resolve(e.target.result);
+      };
       reader.readAsDataURL(blob);
     });
   }
@@ -168,10 +172,15 @@ export class AppComponent implements OnInit {
   async takePhoto() {
     this.imageCapture
       .takePhoto()
-      .then(async (blob: any) => {
+      .then(async (blob: Blob) => {
         this.elVideo.nativeElement.style = 'display: none;';
         const convertedPhoto = await this.blobToBase64(blob);
-        this.continueListPhotos.push(convertedPhoto);
+        const convertedPhotoX = await imageConversion.dataURLtoFile(
+          convertedPhoto,
+          imageConversion.EImageType.JPEG
+        );
+        const newBase64Jpeg = await this.blobToBase64(convertedPhotoX);
+        this.continueListPhotos.push(newBase64Jpeg);
       })
       .catch(function (error: any) {
         console.log('takePhoto() error: ', error);
