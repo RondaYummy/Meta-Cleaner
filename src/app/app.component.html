@@ -5,7 +5,7 @@
   <div class="web-version" *ngIf="isWebVersion">It's web version site</div>
 
   <video #video name="video" autoplay style="display: none"></video>
-  <button *ngIf="stream" type="button" (click)="takePhoto()">
+  <button *ngIf="stream" type="button" class='take-photo-btn' (click)="takePhoto()">
     Зробити фото
   </button>
 

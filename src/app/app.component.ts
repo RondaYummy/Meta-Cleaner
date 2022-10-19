@@ -157,11 +157,21 @@ export class AppComponent implements OnInit {
     this.elVideo.nativeElement.srcObject = this.stream;
   }
 
-  takePhoto() {
+  blobToBase64(blob: any): Promise<any> {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  async takePhoto() {
     this.imageCapture
       .takePhoto()
-      .then(function (blob: any) {
-        console.log(blob, 'take photo');
+      .then(async (blob: any) => {
+        this.elVideo.nativeElement.style = 'display: none;';
+        const convertedPhoto = await this.blobToBase64(blob);
+        this.continueListPhotos.push(convertedPhoto);
       })
       .catch(function (error: any) {
         console.log('takePhoto() error: ', error);

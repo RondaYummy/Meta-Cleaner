@@ -144,3 +144,20 @@
   height: 100%;
   flex-grow: 1;
 }
+
+.take-photo-btn {
+  width: 240px;
+  height: 41px;
+  left: calc(50% - 120px);
+  background: #5375ED;
+  border: 0.5px solid #C7D5E9;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #D9E4F1;
+  position: absolute;
+  bottom: 130px;
+  cursor: pointer;
+}
