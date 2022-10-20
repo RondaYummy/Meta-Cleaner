@@ -58,41 +58,6 @@ export class AppComponent implements OnInit {
     } else {
       this.isOnline = true;
     }
-
-    // const app = {
-    //   appName: 'Text Editor',
-    //   file: {
-    //     handle: null,
-    //     name: null,
-    //     isModified: false,
-    //   },
-    //   options: {
-    //     captureTabs: true,
-    //     fontSize: 14,
-    //     monoSpace: false,
-    //     wordWrap: true,
-    //   },
-    //   hasFSAccess: 'chooseFileSystemEntries' in window ||
-    //                'showOpenFilePicker' in window,
-    //   isMac: navigator.userAgent.includes('Mac OS X'),
-    // };
-
-    // app.saveFile = async () => {
-    //   try {
-    //     if (!app.file.handle) {
-    //       return await app.saveFileAs();
-    //     }
-    //     gaEvent('FileAction', 'Save');
-    //     await writeFile(app.file.handle, app.getText());
-    //     app.setModified(false);
-    //   } catch (ex) {
-    //     gaEvent('Error', 'FileSave', ex.name);
-    //     const msg = 'Unable to save file';
-    //     console.error(msg, ex);
-    //     alert(msg);
-    //   }
-    //   app.setFocus();
-    // };
   }
 
   newIsOnline(event: boolean) {
