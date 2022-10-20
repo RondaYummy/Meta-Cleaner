@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as imageConversion from 'image-conversion';
-import Jimp from 'jimp/es';
 
 @Component({
   selector: 'app-root',

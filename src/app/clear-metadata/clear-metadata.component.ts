@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as piexif from 'piexifjs';
 import { Buffer } from 'buffer';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-clear-metadata',
@@ -17,7 +18,7 @@ export class ClearMetadataComponent implements OnInit {
   exif: any = {};
   gps: any = {};
   progressFileNumber: number = 0;
-  photosWithClearMetadata: Array<Blob> = [];
+  photosWithClearMetadata: Array<any> = [];
 
   // ZEROTH
   replaceZerothStrings = [
@@ -184,18 +185,54 @@ export class ClearMetadataComponent implements OnInit {
     this.cancel.emit(true);
   }
 
-  clearMetadata() {
+  async saveFile(imgBlob: Blob) {
+    // create a new handle
+    const newHandle = await (window as any).showSaveFilePicker();
+    // create a FileSystemWritableFileStream to write to
+    const writableStream = await newHandle.createWritable();
+    // write our file
+    await writableStream.write(imgBlob);
+    // close the file and write the contents to disk.
+    await writableStream.close();
+  }
+
+  downloadBase64File(contentBase64: string, fileName: string) {
+    const downloadLink = document.createElement('a');
+    document.body.appendChild(downloadLink);
+
+    downloadLink.href = contentBase64;
+    downloadLink.target = '_self';
+    downloadLink.download = fileName;
+    downloadLink.click();
+  }
+
+  blobToBase64(blob: Blob | File): Promise<any> {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onload = function (e: any) {
+        return resolve(e.target.result);
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  async clearMetadata() {
     const exifObj = { '0th': this.zeroth, Exif: this.exif, GPS: this.gps };
     const exifbytes = piexif.dump(exifObj);
 
     for (let index = 0; index < this.photoList.length; index++) {
-      piexif.remove(this.photoList[index]); // Clear ALL metadata
-      const newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
-      const newJpeg = Buffer.from(newData, 'binary');
-      const file = new Blob([newJpeg], { type: 'image/jpeg' }); // TODO jpeg give from base64
-      this.photosWithClearMetadata.push(file);
+      let newData = piexif.remove(this.photoList[index]); // Clear ALL metadata
+      newData = piexif.insert(exifbytes, this.photoList[index]); // Set secureString
+      this.photosWithClearMetadata.push(newData);
       this.progressFileNumber = index + 1;
     }
+
+    await Promise.all(
+      this.photosWithClearMetadata.map(async (base64: string) => {
+        return this.downloadBase64File(base64, `${Date.now()}.jpeg`);
+      })
+    );
+
     this.successClear.emit(this.photosWithClearMetadata);
   }
 }
