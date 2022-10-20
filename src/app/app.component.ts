@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import * as imageConversion from 'image-conversion';
 
 @Component({
@@ -18,6 +18,15 @@ export class AppComponent implements OnInit {
   @ViewChild('video') elVideo: any;
   stream: any;
   imageCapture: any;
+
+  public promptEvent: any;
+
+  @HostListener('beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e: any) {
+    e.preventDefault();
+    this.promptEvent = e;
+  }
+  constructor() {}
 
   ngOnInit() {
     this.checkEthernetStatus();
@@ -44,7 +53,7 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (navigator.onLine) {
+    if (!navigator.onLine) {
       this.isOnline = false;
     } else {
       this.isOnline = true;
@@ -144,6 +153,11 @@ export class AppComponent implements OnInit {
       this.photosWithClearMetadata = [];
       this.clearMetadata = false;
     }
+  }
+
+  installPwa(): void {
+    console.log(this.promptEvent, 'this.promptEvent');
+    this.promptEvent.prompt();
   }
 
   async takePhotoUser() {
