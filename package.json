@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "@angular/service-worker": "^14.2.0",
-    "file-saver": "^2.0.5",
     "image-conversion": "^2.1.1",
     "piexifjs": "^1.0.6",
     "rxjs": "~7.5.0",

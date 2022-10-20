@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as piexif from 'piexifjs';
-import { Buffer } from 'buffer';
-import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-clear-metadata',
@@ -13,7 +11,7 @@ export class ClearMetadataComponent implements OnInit {
   @Output() cancel = new EventEmitter<boolean>();
   @Output() successClear = new EventEmitter<Array<Blob>>();
 
-  securedString = 'Secured by Cyber Regiment! Glory To Ukraine!';
+  securedString = '            Secured by Cyber Regiment! Glory To Ukraine!';
   zeroth: any = {};
   exif: any = {};
   gps: any = {};
