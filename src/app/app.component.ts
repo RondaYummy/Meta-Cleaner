@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import * as imageConversion from 'image-conversion';
 import * as ConvertImage from 'js-convert-images';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,13 @@ import * as ConvertImage from 'js-convert-images';
 })
 export class AppComponent implements OnInit {
   title = 'meta-cleaner';
-  isOnline = true;
-  isWebVersion = true;
+  isOnline = false;
+  isWebVersion = false;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   clearMetadata: boolean = false;
   photosWithClearMetadata: Array<Blob>;
+  endClearMetadata: boolean = false;
 
   @ViewChild('video') elVideo: any;
   stream: any;
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
     this.checkEthernetStatus();
     setInterval(() => {
       this.checkEthernetStatus();
-    }, 5000);
+    }, environment.checkEthernetInterval);
 
     console.group('Ukraine');
     console.info(
@@ -55,10 +56,12 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (!navigator.onLine) {
-      this.isOnline = false;
-    } else {
-      this.isOnline = true;
+    if (environment.production) {
+      if (!navigator.onLine) {
+        this.isOnline = false;
+      } else {
+        this.isOnline = true;
+      }
     }
   }
 
@@ -86,6 +89,7 @@ export class AppComponent implements OnInit {
 
   closeSelected(event: boolean) {
     if (event) {
+      this.stream = undefined;
       this.continueListPhotos = [];
     }
   }
@@ -112,6 +116,7 @@ export class AppComponent implements OnInit {
   successClearMetadata(clearedArray: Array<Blob>) {
     this.continueListPhotos = [];
     this.photosWithClearMetadata = clearedArray;
+    this.endClearMetadata = true;
   }
 
   goHome(success: boolean) {
@@ -120,6 +125,7 @@ export class AppComponent implements OnInit {
       this.photosWithClearMetadata = [];
       this.clearMetadata = false;
       this.stream = undefined;
+      this.endClearMetadata = false;
     }
   }
 

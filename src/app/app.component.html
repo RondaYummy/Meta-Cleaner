@@ -3,14 +3,17 @@
 </header>
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">
-    <button (click)="installPwa()">
-      Встановити
-    </button>
+    <button (click)="installPwa()">Встановити</button>
     It's web version site
   </div>
 
   <video #video name="video" autoplay style="display: none"></video>
-  <button *ngIf="stream && !photosWithClearMetadata" type="button" class='take-photo-btn' (click)="takePhoto()">
+  <button
+    *ngIf="stream && !photosWithClearMetadata"
+    type="button"
+    class="take-photo-btn"
+    (click)="takePhoto()"
+  >
     Зробити фото
   </button>
 
@@ -19,7 +22,7 @@
     *ngIf="
       !isWebVersion &&
       (!continueListPhotos || !continueListPhotos?.length) &&
-      !stream
+      !stream && !endClearMetadata
     "
   >
     <div class="meta-block">
@@ -96,4 +99,3 @@
 >
 </app-ethernet-popups>
 <input type="file" accept="image/*;capture=camera" />
-

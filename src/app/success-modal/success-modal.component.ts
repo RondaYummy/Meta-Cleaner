@@ -9,16 +9,9 @@ export class SuccessModalComponent implements OnInit {
   @Output() goHome = new EventEmitter<boolean>();
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   goToHome() {
     this.goHome.emit(true);
   }
-
-  // async saveImages() {
-  //   await self.showSaveFilePicker({
-  //     id: 'importImage',
-  //     startIn: 'pictures',
-  //   });
-  // }
 }

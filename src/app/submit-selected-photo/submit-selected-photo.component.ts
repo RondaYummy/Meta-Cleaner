@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-submit-selected-photo',
@@ -9,6 +10,7 @@ export class SubmitSelectedPhotoComponent implements OnInit {
   @Input() fileList: Array<string> = [];
   @Output() continue = new EventEmitter<Array<string>>();
   selectedPhotosForContinue: Array<string> = [];
+  maxSelectedPhotos: number = environment.maxSelectedPhotos;
 
   constructor() {}
   ngOnInit(): void {}
@@ -21,7 +23,7 @@ export class SubmitSelectedPhotoComponent implements OnInit {
     const index = this.selectedPhotosForContinue.findIndex(
       (el) => el === base64photo
     );
-    if (index < 0) {
+    if (index < 0 && this.selectedPhotosForContinue.length < this.maxSelectedPhotos) {
       this.selectedPhotosForContinue.push(base64photo);
     } else {
       this.selectedPhotosForContinue.splice(index, 1);
