@@ -1,21 +1,16 @@
 # MetaCleaner
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Further help
+## Errors
+### Could not find a declaration file for module 'piexifjs'. 'D:/Projects/MetaCleanerAngular/node_modules/piexifjs/piexif.js' implicitly has an 'any' type.
+### Try `npm i --save-dev @types/piexifjs` if it exists or add a new declaration (.d.ts) file containing `declare module 'piexifjs';`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Paste file "piexif.d.ts" into the folder "/node_modules/piexif"
 
-Insert file piexif.d.ts > node_modules/piexif
+For a more flexible setting, see environment files.
