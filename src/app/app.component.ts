@@ -19,13 +19,14 @@ export class AppComponent implements OnInit {
   stream: any;
   imageCapture: any;
 
-  public promptEvent: any;
+  promptEvent: any;
 
-  @HostListener('beforeinstallprompt', ['$event'])
+  @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
-    e.preventDefault();
+    console.log(e, '131213');
     this.promptEvent = e;
   }
+
   constructor() {}
 
   ngOnInit() {
@@ -53,7 +54,7 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (!navigator.onLine) {
+    if (navigator.onLine) {
       this.isOnline = false;
     } else {
       this.isOnline = true;
