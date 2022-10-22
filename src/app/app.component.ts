@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import * as imageConversion from 'image-conversion';
+import * as ConvertImage from 'js-convert-images';
 
 @Component({
   selector: 'app-root',
@@ -118,11 +119,12 @@ export class AppComponent implements OnInit {
       this.continueListPhotos = [];
       this.photosWithClearMetadata = [];
       this.clearMetadata = false;
+      this.stream = undefined;
     }
   }
 
   installPwa(): void {
-    console.log(this.promptEvent, 'this.promptEvent');
+    console.log(this.promptEvent, 'promptEvent');
     this.promptEvent.prompt();
   }
 
@@ -138,31 +140,25 @@ export class AppComponent implements OnInit {
     this.elVideo.nativeElement.srcObject = this.stream;
   }
 
-  blobToBase64(blob: Blob | File): Promise<any> {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader();
-      reader.onload = function (e: any) {
-        return resolve(e.target.result);
-      };
-      reader.readAsDataURL(blob);
-    });
-  }
-
   async takePhoto() {
     this.imageCapture
       .takePhoto()
       .then(async (blob: Blob) => {
         this.elVideo.nativeElement.style = 'display: none;';
-        const convertedPhoto = await this.blobToBase64(blob);
-        const convertedPhotoX = await imageConversion.dataURLtoFile(
-          convertedPhoto,
-          imageConversion.EImageType.JPEG
-        );
-        const newBase64Jpeg = await this.blobToBase64(convertedPhotoX);
-        this.continueListPhotos.push(newBase64Jpeg);
+        const converter: any = new ConvertImage.ConvertImage();
+        const options = {
+          name: 'taken-image',
+          download: false,
+          width: 400,
+          height: 400,
+          type: 'jpeg',
+        };
+        converter.convertImageFromFile(blob, options).then((data: any) => {
+          this.continueListPhotos.push(data);
+        });
       })
       .catch(function (error: any) {
-        console.log('takePhoto() error: ', error);
+        console.log('".takePhoto(): error: ', error);
       });
   }
 }
