@@ -155,8 +155,8 @@ export class AppComponent implements OnInit {
         const options = {
           name: 'taken-image',
           download: false,
-          width: 400,
-          height: 400,
+          width: 1280,
+          height: 1280,
           type: 'jpeg',
         };
         converter.convertImageFromFile(blob, options).then((data: any) => {
