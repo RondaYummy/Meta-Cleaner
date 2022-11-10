@@ -29,6 +29,18 @@
 
       .continue {
         cursor: pointer;
+        border: none;
+        background: none;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        color: #273B50;
+      }
+
+      .continue:disabled {
+        cursor: default;
       }
     }
   }

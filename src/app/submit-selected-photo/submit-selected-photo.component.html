@@ -10,7 +10,14 @@
         }}
         з {{ maxSelectedPhotos }}
       </div>
-      <div class="continue" (click)="continueClear()">Продовжити</div>
+      <button
+        type="button"
+        class="continue"
+        [disabled]="!selectedPhotosForContinue.length"
+        (click)="continueClear()"
+      >
+        Продовжити
+      </button>
     </div>
 
     <div class="image-list">
