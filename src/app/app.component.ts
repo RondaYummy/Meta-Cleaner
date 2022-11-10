@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AppComponent implements OnInit {
   title = 'meta-cleaner';
   isOnline = !navigator.onLine && environment.production;
-  isWebVersion = window.matchMedia('(display-mode: standalone)').matches;
+  isWebVersion = !window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   clearMetadata: boolean = false;
