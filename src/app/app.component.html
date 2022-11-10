@@ -9,7 +9,7 @@
 
   <video #video name="video" autoplay style="display: none"></video>
   <button
-    *ngIf="stream && !photosWithClearMetadata"
+    *ngIf="stream && !photosWithClearMetadata.length"
     type="button"
     class="take-photo-btn"
     (click)="takePhoto()"
