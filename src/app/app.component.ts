@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements OnInit {
   title = 'meta-cleaner';
-  isOnline = !navigator.onLine && environment.production;
+  isOnline = navigator.onLine && environment.production;
   isWebVersion = !window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
@@ -26,20 +26,17 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
-    console.log(e, '131213');
     this.promptEvent = e;
   }
 
   constructor() {}
 
   ngOnInit() {
-    this.checkEthernetStatus();
-    setInterval(() => {
-      this.checkEthernetStatus();
-    }, environment.checkEthernetInterval);
-
     window.addEventListener('offline', () => {
-      console.log(1);
+      this.isOnline = false;
+    });
+    window.addEventListener('online', () => {
+      this.isOnline = true;
     });
 
     window
@@ -58,10 +55,6 @@ export class AppComponent implements OnInit {
       'background: #FFD700;  font-size: 16px;font-weight: bold;'
     );
     console.groupEnd();
-  }
-
-  checkEthernetStatus() {
-    this.isOnline = !navigator.onLine && environment.production;
   }
 
   newIsOnline(event: boolean) {
