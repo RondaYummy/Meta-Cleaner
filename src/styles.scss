@@ -6,3 +6,29 @@ html, body {
   height: 100vh;
   overflow: hidden;
 }
+
+.selected {
+  position: relative;
+}
+
+.selected::after {
+  content: url('./assets/images/check.png');
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 13.5px);
+  width: 27px;
+  height: 18px;
+  z-index: 200;
+}
+
+.selected::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 100px;
+  height: 100px;
+  z-index: 199;
+  backdrop-filter: blur(1px);
+  border-radius: 8px;
+}

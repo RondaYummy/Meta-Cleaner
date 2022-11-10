@@ -161,3 +161,58 @@
   bottom: 130px;
   cursor: pointer;
 }
+
+.clear-photo-btn {
+  width: 240px;
+  height: 41px;
+  left: calc(50% - 120px);
+  background: #5375ED;
+  border: 0.5px solid #C7D5E9;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #D9E4F1;
+  position: absolute;
+  bottom: 80px;
+  cursor: pointer;
+}
+
+.taken-photo-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .taken-photo-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background-color: #C7D5E9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+.selected-taken-photos {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #273B50;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}

@@ -13,6 +13,11 @@ export class AppComponent implements OnInit {
   isWebVersion = !window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
+
+  takenPhotos: Array<string> = [];
+  takenSelectedPhotos: Array<string> = [];
+  maxSelectedPhotoCount: number = environment.maxSelectedPhotos;
+
   clearMetadata: boolean = false;
   photosWithClearMetadata: Array<Blob>;
   endClearMetadata: boolean = false;
@@ -146,7 +151,6 @@ export class AppComponent implements OnInit {
     this.imageCapture
       .takePhoto()
       .then(async (blob: Blob) => {
-        this.elVideo.nativeElement.style = 'display: none;';
         const converter: any = new ConvertImage.ConvertImage();
         const options = {
           name: 'taken-image',
@@ -156,11 +160,39 @@ export class AppComponent implements OnInit {
           type: 'jpeg',
         };
         converter.convertImageFromFile(blob, options).then((data: any) => {
-          this.continueListPhotos.push(data);
+          this.takenPhotos.push(data);
         });
       })
       .catch(function (error: any) {
         console.log('".takePhoto(): error: ', error);
       });
+  }
+
+  clearMetadataTakePhoto() {
+    this.continueListPhotos = this.takenSelectedPhotos;
+    this.closeWindowForTakent();
+  }
+
+  selectTakenPhoto(photo: any) {
+    if (
+      this.takenSelectedPhotos.length < environment.maxSelectedPhotos &&
+      !this.takenSelectedPhotos.includes(photo)
+    ) {
+      this.takenSelectedPhotos.push(photo);
+    }
+  }
+
+  closeWindowForTakent() {
+    this.stream.getTracks().forEach(function (track: any) {
+      track.stop();
+    });
+    this.stream = undefined;
+    this.elVideo.nativeElement.style = 'display: none;';
+    this.takenSelectedPhotos = [];
+    this.takenPhotos = [];
+  }
+
+  isSelectedTakentPhoto(photo: string) {
+    return this.takenSelectedPhotos.includes(photo);
   }
 }

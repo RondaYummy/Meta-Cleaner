@@ -8,14 +8,42 @@
   </div>
 
   <video #video name="video" autoplay style="display: none"></video>
-  <button
-    *ngIf="stream && !photosWithClearMetadata?.length"
-    type="button"
-    class="take-photo-btn"
-    (click)="takePhoto()"
-  >
-    Зробити фото
-  </button>
+  <div *ngIf="stream && !photosWithClearMetadata?.length">
+    <div class="selected-taken-photos">
+      <div>
+        Обрано {{ takenSelectedPhotos?.length }} з
+        {{ maxSelectedPhotoCount }} фото.
+      </div>
+
+      <img
+        src="../../assets/images/close.png"
+        class="close-btn"
+        (click)="closeWindowForTakent()"
+      />
+    </div>
+
+    <div class="taken-photo-list" *ngIf="takenPhotos.length">
+      <div
+        class="taken-photo-item"
+        (click)="selectTakenPhoto(photo)"
+        *ngFor="let photo of takenPhotos; let i = index"
+        [class.selected]="isSelectedTakentPhoto(photo)"
+      >
+        <img [src]="photo" alt="" />
+      </div>
+    </div>
+
+    <button type="button" class="take-photo-btn" (click)="takePhoto()">
+      Зробити фото
+    </button>
+    <button
+      type="button"
+      class="clear-photo-btn"
+      (click)="clearMetadataTakePhoto()"
+    >
+      Очистити метадані
+    </button>
+  </div>
 
   <div
     class="downloaded-version"
