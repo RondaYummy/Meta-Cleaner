@@ -57,13 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   checkEthernetStatus() {
-    if (environment.production) {
-      if (!navigator.onLine) {
-        this.isOnline = false;
-      } else {
-        this.isOnline = true;
-      }
-    }
+    this.isOnline = !navigator.onLine && environment.production;
   }
 
   newIsOnline(event: boolean) {
