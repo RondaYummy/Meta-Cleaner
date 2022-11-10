@@ -44,38 +44,6 @@ export class AppComponent implements OnInit {
         this.isWeb = matches;
       });
 
-    var el: any = document.body;
-    if (el.addEventListener) {
-      el.addEventListener(
-        'online',
-        function () {
-          alert('online');
-        },
-        true
-      );
-      el.addEventListener(
-        'offline',
-        function () {
-          alert('offline');
-        },
-        true
-      );
-    } else if (el.attachEvent) {
-      el.attachEvent('ononline', function () {
-        alert('online');
-      });
-      el.attachEvent('onoffline', function () {
-        alert('offline');
-      });
-    } else {
-      el.ononline = function () {
-        alert('online');
-      };
-      el.onoffline = function () {
-        alert('offline');
-      };
-    }
-
     console.group('Ukraine');
     console.info(
       '%c        Все буде Україна!        ',
