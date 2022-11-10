@@ -13,4 +13,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 Paste file "piexif.d.ts" into the folder "/node_modules/piexif"
 
+js-convert-image set inside index.d.ts export class ConvertImage {}
+
 For a more flexible setting, see environment files.
