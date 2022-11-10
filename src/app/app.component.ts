@@ -91,6 +91,10 @@ export class AppComponent implements OnInit {
     this.selectedPhotos = [];
   }
 
+  closeSubmitSelected() {
+    this.selectedPhotos = [];
+  }
+
   clearMetadataFn(clearList: Array<string>) {
     if (clearList && clearList.length) {
       this.clearMetadata = true;

@@ -69,6 +69,7 @@
     *ngIf="selectedPhotos && selectedPhotos.length"
     [fileList]="selectedPhotos"
     (continue)="continueSelected($event)"
+    (close)="closeSubmitSelected()"
   >
   </app-submit-selected-photo>
 

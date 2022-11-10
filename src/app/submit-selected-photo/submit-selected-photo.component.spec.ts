@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SubmitSelectedPhotoComponent } from './submit-selected-photo.component';
 
 describe('SubmitSelectedPhotoComponent', () => {
@@ -8,9 +7,8 @@ describe('SubmitSelectedPhotoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubmitSelectedPhotoComponent ]
-    })
-    .compileComponents();
+      declarations: [SubmitSelectedPhotoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SubmitSelectedPhotoComponent);
     component = fixture.componentInstance;

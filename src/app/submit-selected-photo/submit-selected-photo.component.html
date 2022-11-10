@@ -10,14 +10,23 @@
         }}
         з {{ maxSelectedPhotos }}
       </div>
-      <button
-        type="button"
-        class="continue"
-        [disabled]="!selectedPhotosForContinue.length"
-        (click)="continueClear()"
-      >
-        Продовжити
-      </button>
+
+      <div class="actions-div">
+        <button
+          type="button"
+          class="continue"
+          [disabled]="!selectedPhotosForContinue.length"
+          (click)="continueClear()"
+        >
+          Продовжити
+        </button>
+
+        <img
+          src="../../assets/images/close.png"
+          class="close-btn"
+          (click)="closeWindow()"
+        />
+      </div>
     </div>
 
     <div class="image-list">

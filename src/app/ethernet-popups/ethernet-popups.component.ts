@@ -17,11 +17,7 @@ export class EthernetPopupsComponent {
 
   checkEthernetStatus() {
     this.isChecked = true;
-    if (!navigator.onLine) {
-      this.isOnlineValue = false;
-    } else {
-      this.isOnlineValue = true;
-    }
+    this.isOnlineValue = navigator.onLine;
   }
 
   isOffline() {

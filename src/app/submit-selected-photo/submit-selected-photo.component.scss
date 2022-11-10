@@ -27,6 +27,13 @@
       justify-content: space-between;
       width: 100%;
 
+      .actions-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 22.5px;
+      }
+
       .continue {
         cursor: pointer;
         border: none;
@@ -37,10 +44,20 @@
         font-size: 13px;
         line-height: 16px;
         color: #273B50;
+        margin-right: 10px;
       }
 
       .continue:disabled {
         cursor: default;
+      }
+
+      .close-btn {
+        cursor: pointer;
+        width: 9px;
+        height: 9px;
+        position: absolute;
+        top: 24px;
+        right: 24px;
       }
     }
   }

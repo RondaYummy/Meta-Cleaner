@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class SubmitSelectedPhotoComponent {
   @Input() fileList: Array<string> = [];
   @Output() continue = new EventEmitter<Array<string>>();
+  @Output() close = new EventEmitter<Array<string>>();
   selectedPhotosForContinue: Array<string> = [];
   maxSelectedPhotos: number = environment.maxSelectedPhotos;
 
@@ -18,11 +19,18 @@ export class SubmitSelectedPhotoComponent {
     this.continue.emit(this.selectedPhotosForContinue);
   }
 
+  closeWindow() {
+    this.close.emit();
+  }
+
   selectPhoto(base64photo: string) {
     const index = this.selectedPhotosForContinue.findIndex(
       (el) => el === base64photo
     );
-    if (index < 0 && this.selectedPhotosForContinue.length < this.maxSelectedPhotos) {
+    if (
+      index < 0 &&
+      this.selectedPhotosForContinue.length < this.maxSelectedPhotos
+    ) {
       this.selectedPhotosForContinue.push(base64photo);
     } else {
       this.selectedPhotosForContinue.splice(index, 1);
