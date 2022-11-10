@@ -9,13 +9,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements OnInit {
   title = 'meta-cleaner';
-  isOnline = false;
-  isWebVersion = false;
+  isOnline = !navigator.onLine && environment.production;
+  isWebVersion = window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   clearMetadata: boolean = false;
   photosWithClearMetadata: Array<Blob>;
   endClearMetadata: boolean = false;
+  isWeb: any;
 
   @ViewChild('video') elVideo: any;
   stream: any;
@@ -37,6 +38,44 @@ export class AppComponent implements OnInit {
       this.checkEthernetStatus();
     }, environment.checkEthernetInterval);
 
+    window
+      .matchMedia('(display-mode: standalone)')
+      .addEventListener('change', ({ matches }) => {
+        this.isWeb = matches;
+      });
+
+    var el: any = document.body;
+    if (el.addEventListener) {
+      el.addEventListener(
+        'online',
+        function () {
+          alert('online');
+        },
+        true
+      );
+      el.addEventListener(
+        'offline',
+        function () {
+          alert('offline');
+        },
+        true
+      );
+    } else if (el.attachEvent) {
+      el.attachEvent('ononline', function () {
+        alert('online');
+      });
+      el.attachEvent('onoffline', function () {
+        alert('offline');
+      });
+    } else {
+      el.ononline = function () {
+        alert('online');
+      };
+      el.onoffline = function () {
+        alert('offline');
+      };
+    }
+
     console.group('Ukraine');
     console.info(
       '%c        Все буде Україна!        ',
@@ -47,12 +86,6 @@ export class AppComponent implements OnInit {
       'background: #FFD700;  font-size: 16px;font-weight: bold;'
     );
     console.groupEnd();
-
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      this.isWebVersion = false;
-    } else {
-      this.isWebVersion = true;
-    }
   }
 
   checkEthernetStatus() {
