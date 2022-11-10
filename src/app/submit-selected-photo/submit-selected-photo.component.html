@@ -33,8 +33,9 @@
       <div
         [class.selected]="isSelectedPhoto(photo)"
         *ngFor="let photo of fileList; let i = index"
+        (click)="selectPhoto(photo)"
       >
-        <img [src]="photo" (click)="selectPhoto(photo)" />
+        <img [src]="photo" />
       </div>
     </div>
   </div>

@@ -174,11 +174,17 @@ export class AppComponent implements OnInit {
   }
 
   selectTakenPhoto(photo: any) {
+    const added = this.takenSelectedPhotos.includes(photo);
     if (
       this.takenSelectedPhotos.length < environment.maxSelectedPhotos &&
-      !this.takenSelectedPhotos.includes(photo)
+      !added
     ) {
       this.takenSelectedPhotos.push(photo);
+    }
+    if (added) {
+      this.takenSelectedPhotos = this.takenSelectedPhotos.filter(
+        (photoCurrent) => photoCurrent !== photo
+      );
     }
   }
 

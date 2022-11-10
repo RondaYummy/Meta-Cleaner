@@ -24,16 +24,17 @@ export class SubmitSelectedPhotoComponent {
   }
 
   selectPhoto(base64photo: string) {
-    const index = this.selectedPhotosForContinue.findIndex(
-      (el) => el === base64photo
-    );
+    const added = this.selectedPhotosForContinue.includes(base64photo);
     if (
-      index < 0 &&
+      !added &&
       this.selectedPhotosForContinue.length < this.maxSelectedPhotos
     ) {
       this.selectedPhotosForContinue.push(base64photo);
-    } else {
-      this.selectedPhotosForContinue.splice(index, 1);
+    }
+    if (added) {
+      this.selectedPhotosForContinue = this.selectedPhotosForContinue.filter(
+        (i) => i !== base64photo
+      );
     }
     return;
   }
