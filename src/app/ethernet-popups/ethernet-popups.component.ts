@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ethernet-popups',
   templateUrl: './ethernet-popups.component.html',
   styleUrls: ['./ethernet-popups.component.scss'],
 })
-export class EthernetPopupsComponent implements OnInit {
+export class EthernetPopupsComponent {
   @Input() isOnline!: boolean;
   @Input() isWebVersion!: boolean;
   @Output() newIsOnline = new EventEmitter<boolean>();
@@ -14,7 +14,6 @@ export class EthernetPopupsComponent implements OnInit {
   isChecked = false;
 
   constructor() {}
-  ngOnInit(): void {}
 
   checkEthernetStatus() {
     this.isChecked = true;

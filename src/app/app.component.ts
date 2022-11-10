@@ -38,6 +38,10 @@ export class AppComponent implements OnInit {
       this.checkEthernetStatus();
     }, environment.checkEthernetInterval);
 
+    window.addEventListener('offline', () => {
+      console.log(1);
+    });
+
     window
       .matchMedia('(display-mode: standalone)')
       .addEventListener('change', ({ matches }) => {

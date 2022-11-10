@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -6,14 +6,13 @@ import { environment } from 'src/environments/environment';
   templateUrl: './submit-selected-photo.component.html',
   styleUrls: ['./submit-selected-photo.component.scss'],
 })
-export class SubmitSelectedPhotoComponent implements OnInit {
+export class SubmitSelectedPhotoComponent {
   @Input() fileList: Array<string> = [];
   @Output() continue = new EventEmitter<Array<string>>();
   selectedPhotosForContinue: Array<string> = [];
   maxSelectedPhotos: number = environment.maxSelectedPhotos;
 
   constructor() {}
-  ngOnInit(): void {}
 
   continueClear() {
     this.continue.emit(this.selectedPhotosForContinue);
