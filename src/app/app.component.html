@@ -59,8 +59,10 @@
         id="file-input"
         type="file"
         multiple="multiple"
+        accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/svg+xml"
         (change)="handleFiles($event)"
       />
+      <!-- , , svg, avif, gif -->
       <label for="file-input" class="meta-cleaner-btn">
         <img
           src="../assets//images/search-img.svg"
