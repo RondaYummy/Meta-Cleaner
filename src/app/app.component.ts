@@ -32,10 +32,6 @@ export class AppComponent implements OnInit {
   onbeforeinstallprompt(e: any) {
     this.promptEvent = e;
   }
-  @HostListener('window:fullscreenchange', ['$event'])
-  changeView(e: any) {
-    console.log(e);
-  }
 
   constructor() {}
 
