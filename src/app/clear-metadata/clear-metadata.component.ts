@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as piexif from 'piexifjs';
+import * as ConvertImage from 'js-convert-images';
 
 @Component({
   selector: 'app-clear-metadata',
@@ -162,6 +163,24 @@ export class ClearMetadataComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    const converter: any = new ConvertImage.ConvertImage();
+    const options = {
+      name: 'taken-image',
+      download: false,
+      width: 1280,
+      height: 1280,
+      type: 'jpeg',
+    };
+    const regEx = new RegExp('jpeg', 'gi');
+    for (let index = 0; index < this.photoList.length; index++) {
+      const element = this.photoList[index];
+      if (!regEx.test(element)) {
+        converter.convertImageFromUrl(element, options).then((data: any) => {
+          this.photoList[index] = data;
+        });
+      }
+    }
+
     this.replaceZerothStrings.forEach((prop: string) => {
       this.zeroth[piexif.ImageIFD[prop]] = this.securedString;
     });

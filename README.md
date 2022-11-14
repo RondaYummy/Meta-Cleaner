@@ -16,3 +16,5 @@ Paste file "piexif.d.ts" into the folder "/node_modules/piexif"
 js-convert-image set inside index.d.ts export class ConvertImage {}
 
 For a more flexible setting, see environment files.
+
+Allowed images type: png, jpeg, jpg, webp, svg, avif, gif.
