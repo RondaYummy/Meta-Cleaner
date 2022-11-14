@@ -11,7 +11,7 @@
   <div *ngIf="stream && !photosWithClearMetadata?.length">
     <div class="selected-taken-photos">
       <div>
-        Обрано {{ takenSelectedPhotos?.length }} з
+        Обрано {{ takenSelectedPhotos.length || 0 }} з
         {{ maxSelectedPhotoCount }} фото.
       </div>
 

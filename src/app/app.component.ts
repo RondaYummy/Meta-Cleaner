@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   clearMetadata: boolean = false;
   photosWithClearMetadata: Array<Blob>;
   endClearMetadata: boolean = false;
-  isWeb: any;
 
   @ViewChild('video') elVideo: any;
   stream: any;
@@ -32,6 +31,10 @@ export class AppComponent implements OnInit {
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e: any) {
     this.promptEvent = e;
+  }
+  @HostListener('window:fullscreenchange', ['$event'])
+  changeView(e: any) {
+    console.log(e);
   }
 
   constructor() {}
@@ -47,7 +50,7 @@ export class AppComponent implements OnInit {
     window
       .matchMedia('(display-mode: standalone)')
       .addEventListener('change', ({ matches }) => {
-        this.isWeb = matches;
+        this.isWebVersion = !matches;
       });
 
     console.group('Ukraine');
