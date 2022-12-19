@@ -58,6 +58,7 @@
       <input
         id="file-input"
         type="file"
+        name="file-input"
         multiple="multiple"
         accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/svg+xml"
         (change)="handleFiles($event)"
@@ -130,4 +131,5 @@
   (newIsOnline)="newIsOnline($event)"
 >
 </app-ethernet-popups>
-<input type="file" accept="image/*;capture=camera" />
+<label for="video-input">Video input</label>
+<input name="video-input" id="video-input" type="file" accept="image/*;capture=camera" />
