@@ -138,7 +138,9 @@ export class AppComponent implements OnInit {
   handleVideo() {
     const constraints = {
       video: {
-        facingMode: this.handleCameraPosition
+        facingMode: {
+          exact: this.handleCameraPosition,
+        }
       }
     }
     return constraints
@@ -147,9 +149,11 @@ export class AppComponent implements OnInit {
   changeCamera() {
     if (this.handleCameraPosition === 'user') {
       this.handleCameraPosition = 'environment';
+      this.closeWindowForTakent();
       this.takePhotoUser();
     } else {
       this.handleCameraPosition = 'user';
+      this.closeWindowForTakent();
       this.takePhotoUser();
     }
   }
