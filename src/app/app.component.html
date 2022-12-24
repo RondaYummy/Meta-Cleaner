@@ -10,7 +10,11 @@
   </div>
 
   <div class="video-box">
-    <div class="change-camera-box" (click)="changeCamera()">Змінити камеру</div>
+    <div class="change-camera-box"
+         (click)="changeCamera()"
+         *ngIf="stream && !photosWithClearMetadata?.length">
+         Змінити камеру
+    </div>
     <video
       #video
       name="video"

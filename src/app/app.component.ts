@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   isWebVersion = !window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
-  handleCameraPosition: 'user' | 'enviroment' = 'user';
+  handleCameraPosition: 'user' | 'environment' = 'user';
 
   takenPhotos: Array<string> = [];
   takenSelectedPhotos: Array<string> = [];
@@ -148,7 +148,7 @@ export class AppComponent implements OnInit {
 
   changeCamera() {
     if (this.handleCameraPosition === 'user') {
-      this.handleCameraPosition = 'enviroment';
+      this.handleCameraPosition = 'environment';
       this.takePhotoUser();
     } else {
       this.handleCameraPosition = 'user';
