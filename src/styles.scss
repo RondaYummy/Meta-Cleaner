@@ -14,8 +14,6 @@ html, body {
 .selected::after {
   content: url('./assets/images/check.png');
   position: absolute;
-  top: 50%;
-  left: calc(50% - 13.5px);
   width: 27px;
   height: 18px;
   z-index: 200;
@@ -24,8 +22,6 @@ html, body {
 .selected::before {
   content: '';
   position: absolute;
-  top: 16px;
-  left: 16px;
   width: 100px;
   height: 100px;
   z-index: 199;
