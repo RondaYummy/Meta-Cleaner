@@ -4,7 +4,9 @@
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">
     <button (click)="installPwa()">Встановити</button>
-    It's web version site
+    <span>It's web version site.</span>
+
+    <p>Please install the app first to continue.</p>
   </div>
 
   <video #video name="video" autoplay style="display: none"></video>

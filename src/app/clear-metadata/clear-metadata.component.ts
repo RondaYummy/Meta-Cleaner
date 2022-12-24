@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as piexif from 'piexifjs';
-import * as ConvertImage from 'js-convert-images';
+import * as piexif from '../piexifjs';
+import * as ConvertImage from '../js-convert-images';
 
 @Component({
   selector: 'app-clear-metadata',
