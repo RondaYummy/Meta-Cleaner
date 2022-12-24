@@ -151,11 +151,9 @@ export class AppComponent implements OnInit {
     if (this.handleCameraPosition === 'user') {
       console.log('user');
       this.handleCameraPosition = 'environment';
-      this.closeWindowForTakent();
       this.takePhotoUser();
     } else {
       this.handleCameraPosition = 'user';
-      this.closeWindowForTakent();
       this.takePhotoUser();
     }
   }
