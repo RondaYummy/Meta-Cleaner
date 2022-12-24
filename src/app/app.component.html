@@ -54,6 +54,7 @@
         (click)="selectTakenPhoto(photo)"
         *ngFor="let photo of takenPhotos; let i = index"
         [class.selected]="isSelectedTakentPhoto(photo)"
+        [class.selected-centered]="isSelectedTakentPhoto(photo)"
       >
         <img [src]="photo" alt="" />
       </div>

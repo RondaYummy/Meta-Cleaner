@@ -195,27 +195,6 @@
   z-index: 200;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 5px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 .taken-photo-box {
   overflow: auto;
   padding-bottom: 80px;
@@ -282,5 +261,5 @@ video {
   background-color: #F3F8FC;
   padding: 5px;
   cursor: pointer;
-  z-index: 201;
+  z-index: 2001;
 }

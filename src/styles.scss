@@ -14,17 +14,46 @@ html, body {
 .selected::after {
   content: url('./assets/images/check.png');
   position: absolute;
+  top: 50px;
+  left: 50px;
   width: 27px;
   height: 18px;
-  z-index: 200;
+  z-index: 198;
+}
+
+.selected-centered::after {
+  top: 35px;
+  left: 35px;
 }
 
 .selected::before {
   content: '';
   position: absolute;
-  width: 100px;
-  height: 100px;
-  z-index: 199;
+  top: 16px;
+  width: 100%;
+  height: 100%;
+  z-index: 198;
   backdrop-filter: blur(1px);
   border-radius: 8px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
