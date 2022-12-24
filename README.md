@@ -18,4 +18,5 @@ Run `http-server -p 8080 -c-1 dist/<project-name>` to run local server.
 
 For a more flexible setting, see environment files.
 
-Allowed images type: image/jpeg, image/png, image/webp, image/avif, image/gif, image/svg+xml.
+## Allowed images type:
+image/jpeg, image/png, image/webp, image/avif, image/gif, image/svg+xml.
