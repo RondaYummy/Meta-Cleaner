@@ -155,20 +155,21 @@
 }
 
 .take-photo-btn {
-  width: 240px;
-  height: 41px;
-  left: calc(50% - 120px);
-  background: #5375ED;
-  border: 0.5px solid #C7D5E9;
+  width: 100px;
+  height: 100px;
+  left: calc(50% - 50px);
+  background: white;
+  border: 5px double #000000;
   border-radius: 20px;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  color: #D9E4F1;
   position: absolute;
-  bottom: 130px;
+  top: 370px;
   cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0px 0px 1px 11px rgba(0,0,0,0.75);
 }
 
 .clear-photo-btn {
@@ -184,14 +185,45 @@
   text-align: center;
   color: #D9E4F1;
   position: absolute;
-  bottom: 80px;
+  bottom: 20px;
   cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.taken-photo-box {
+  overflow: auto;
+  padding-bottom: 80px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
 }
 
 .taken-photo-list {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 40px;
 
   .taken-photo-item {
     width: 100px;
@@ -219,9 +251,11 @@
   font-size: 13px;
   line-height: 16px;
   color: #273B50;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
+  position: fixed;
+  background-color: #F3F8FC;
+  width: 100%;
 }

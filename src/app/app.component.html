@@ -9,8 +9,8 @@
     <p>Please install the app first to continue.</p>
   </div>
 
-  <video #video name="video" autoplay style="display: none"></video>
-  <div *ngIf="stream && !photosWithClearMetadata?.length">
+  <video #video name="video" autoplay style="display: none" class="mb-20"></video>
+  <div *ngIf="stream && !photosWithClearMetadata?.length" class="taken-photo-box">
     <div class="selected-taken-photos">
       <div>
         Обрано {{ takenSelectedPhotos.length || 0 }} з
@@ -41,6 +41,7 @@
     <button
       type="button"
       class="clear-photo-btn"
+      *ngIf="takenPhotos.length && takenPhotos.length > 0"
       (click)="clearMetadataTakePhoto()"
     >
       Очистити метадані
