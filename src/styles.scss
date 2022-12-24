@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+html, body {
+  background: #F3F8FC;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.selected {
+  position: relative;
+}
+
+.selected::after {
+  content: url('./assets/images/check.png');
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 13.5px);
+  width: 27px;
+  height: 18px;
+  z-index: 200;
+}
+
+.selected::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 100px;
+  height: 100px;
+  z-index: 199;
+  backdrop-filter: blur(1px);
+  border-radius: 8px;
+}

@@ -1,0 +1,42 @@
+<div class="fit-popup-backgroung">
+  <div class="popup">
+    <div class="head-continue-popup">
+      <div>
+        Обрані фото
+        {{
+          selectedPhotosForContinue && selectedPhotosForContinue.length
+            ? selectedPhotosForContinue.length
+            : 0
+        }}
+        з {{ maxSelectedPhotos }}
+      </div>
+
+      <div class="actions-div">
+        <button
+          type="button"
+          class="continue"
+          [disabled]="!selectedPhotosForContinue.length"
+          (click)="continueClear()"
+        >
+          Продовжити
+        </button>
+
+        <img
+          src="../../assets/images/close.png"
+          class="close-btn"
+          (click)="closeWindow()"
+        />
+      </div>
+    </div>
+
+    <div class="image-list">
+      <div
+        [class.selected]="isSelectedPhoto(photo)"
+        *ngFor="let photo of fileList; let i = index"
+        (click)="selectPhoto(photo)"
+      >
+        <img [src]="photo" />
+      </div>
+    </div>
+  </div>
+</div>

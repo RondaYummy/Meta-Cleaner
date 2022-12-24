@@ -1,0 +1,137 @@
+<header class="header">
+  <span>MetaCleaner</span>
+</header>
+<div class="main-block">
+  <div class="web-version" *ngIf="isWebVersion">
+    <button (click)="installPwa()">Встановити</button>
+    <span>It's web version site.</span>
+
+    <p>Please install the app first to continue.</p>
+  </div>
+
+  <video #video name="video" autoplay style="display: none"></video>
+  <div *ngIf="stream && !photosWithClearMetadata?.length">
+    <div class="selected-taken-photos">
+      <div>
+        Обрано {{ takenSelectedPhotos.length || 0 }} з
+        {{ maxSelectedPhotoCount }} фото.
+      </div>
+
+      <img
+        src="../../assets/images/close.png"
+        class="close-btn"
+        (click)="closeWindowForTakent()"
+      />
+    </div>
+
+    <div class="taken-photo-list" *ngIf="takenPhotos.length">
+      <div
+        class="taken-photo-item"
+        (click)="selectTakenPhoto(photo)"
+        *ngFor="let photo of takenPhotos; let i = index"
+        [class.selected]="isSelectedTakentPhoto(photo)"
+      >
+        <img [src]="photo" alt="" />
+      </div>
+    </div>
+
+    <button type="button" class="take-photo-btn" (click)="takePhoto()">
+      Зробити фото
+    </button>
+    <button
+      type="button"
+      class="clear-photo-btn"
+      (click)="clearMetadataTakePhoto()"
+    >
+      Очистити метадані
+    </button>
+  </div>
+
+  <div
+    class="downloaded-version"
+    *ngIf="
+      !isWebVersion &&
+      (!continueListPhotos || !continueListPhotos?.length) &&
+      !stream &&
+      !endClearMetadata
+    "
+  >
+    <div class="meta-block">
+      <input
+        id="file-input"
+        type="file"
+        name="file-input"
+        multiple="multiple"
+        accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/svg+xml"
+        (change)="handleFiles($event)"
+      />
+      <!-- , , svg, avif, gif -->
+      <label for="file-input" class="meta-cleaner-btn">
+        <img
+          src="../assets//images/search-img.svg"
+          alt="meta cleaner search image"
+        />
+        <span *ngIf="isOnline">MetaCleaner</span>
+        <span *ngIf="!isOnline">Обрати фото</span>
+      </label>
+
+      <div class="ball one"></div>
+      <div class="ball two"></div>
+      <div class="ball three"></div>
+    </div>
+
+    <div class="open-camera" *ngIf="!isOnline">
+      <p>або</p>
+      <div class="get-photo" (click)="takePhotoUser()">
+        <img src="../assets/images/camera.svg" alt="зробити фото" />
+        <span>Зробити фото</span>
+      </div>
+    </div>
+  </div>
+
+  <app-selected-photo
+    class="selected-on"
+    *ngIf="continueListPhotos && continueListPhotos.length"
+    [fileList]="continueListPhotos"
+    (close)="closeSelected($event)"
+    (clear)="clearMetadataFn($event)"
+  >
+  </app-selected-photo>
+
+  <app-submit-selected-photo
+    *ngIf="selectedPhotos && selectedPhotos.length"
+    [fileList]="selectedPhotos"
+    (continue)="continueSelected($event)"
+    (close)="closeSubmitSelected()"
+  >
+  </app-submit-selected-photo>
+
+  <app-clear-metadata
+    *ngIf="clearMetadata && continueListPhotos && continueListPhotos.length"
+    [photoList]="continueListPhotos"
+    (cancel)="cancelClearMetadata($event)"
+    (successClear)="successClearMetadata($event)"
+  >
+  </app-clear-metadata>
+
+  <app-success-modal
+    *ngIf="photosWithClearMetadata && photosWithClearMetadata.length"
+    (goHome)="goHome($event)"
+  ></app-success-modal>
+</div>
+<footer
+  class="footer"
+  *ngIf="!continueListPhotos || !continueListPhotos?.length"
+>
+  <span class="powered-by">by CyberRegiment</span>
+</footer>
+
+<app-ethernet-popups
+  *ngIf="isOnline && !isWebVersion"
+  [isOnline]="isOnline"
+  [isWebVersion]="isWebVersion"
+  (newIsOnline)="newIsOnline($event)"
+>
+</app-ethernet-popups>
+<label for="video-input">Video input</label>
+<input name="video-input" id="video-input" type="file" accept="image/*;capture=camera" />

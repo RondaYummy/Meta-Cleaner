@@ -1,0 +1,20 @@
+<div class="files-list-block">
+  <div class="selected-head">
+    <span>Обрані фото</span>
+    <img
+      src="../../assets/images/close.png"
+      class="close-btn"
+      (click)="closeSelected()"
+    />
+  </div>
+
+  <div class="file-list">
+    <div class="file-item" *ngFor="let file of fileList; let i = index">
+      <img [src]="file" />
+    </div>
+  </div>
+
+  <button type="button" class="clear-metadata-btn" (click)="clearMetadata()">
+    Очистити метадані {{ fileList.length }} фото
+  </button>
+</div>

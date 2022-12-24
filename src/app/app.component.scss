@@ -1,0 +1,227 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#file-input {
+  display: none;
+}
+
+.main-block {
+  margin: 0;
+  background: #F3F8FC;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #36506C;
+  height: 100%;
+  width: 100%;
+
+  .open-camera {
+    position: relative;
+    z-index: 100;
+    margin-top: 71px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #36506C;
+
+
+    .get-photo {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      color: #273B50;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 20px;
+        height: 18px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .downloaded-version {
+    @include flex-column;
+    flex-grow: 1;
+  }
+
+  .web-version {
+    @include flex-column;
+    flex-grow: 1;
+    font-size: 20px;
+
+    span {
+      margin-top: 10px;
+    }
+
+    p {
+      color: red;
+    }
+  }
+
+  .meta-block {
+    position: relative;
+  }
+
+  .meta-cleaner-btn {
+    @include flex-column;
+    width: 150px;
+    height: 150px;
+    background: #5375ED;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+
+    span {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+      color: #FFFFFF;
+    }
+  }
+
+  .ball {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    border-radius: 50%;
+  }
+
+  .ball.one {
+    width: 180px;
+    height: 180px;
+    background: #C7D5E9;
+    z-index: 19;
+  }
+
+  .ball.two {
+    width: 210px;
+    height: 210px;
+    background: #D9E4F1;
+    z-index: 18;
+    top: -28px;
+    left: -28px;
+  }
+
+  .ball.three {
+    width: 260px;
+    height: 260px;
+    top: -52px;
+    left: -52px;
+    background: #ECF4F9;
+  }
+
+}
+
+.footer {
+  @include flex-column;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  height: 50px;
+}
+
+.header {
+  @include flex-column;
+  flex-shrink: 0;
+  height: 50px;
+
+  span {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #36506C;
+  }
+}
+
+.selected-on {
+  height: 100%;
+  flex-grow: 1;
+}
+
+.take-photo-btn {
+  width: 240px;
+  height: 41px;
+  left: calc(50% - 120px);
+  background: #5375ED;
+  border: 0.5px solid #C7D5E9;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #D9E4F1;
+  position: absolute;
+  bottom: 130px;
+  cursor: pointer;
+}
+
+.clear-photo-btn {
+  width: 240px;
+  height: 41px;
+  left: calc(50% - 120px);
+  background: #5375ED;
+  border: 0.5px solid #C7D5E9;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #D9E4F1;
+  position: absolute;
+  bottom: 80px;
+  cursor: pointer;
+}
+
+.taken-photo-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .taken-photo-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    background-color: #C7D5E9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+.selected-taken-photos {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #273B50;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}

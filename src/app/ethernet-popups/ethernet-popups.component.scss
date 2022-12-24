@@ -1,0 +1,59 @@
+.fit-popup-backgroung {
+  background: rgba(217, 228, 241, 0.1);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+
+  .popup {
+    position: absolute;
+    bottom: 60px;
+    left: calc(50% - 171px);
+    height: 153px;
+    max-width: 328px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 16px 28px;
+    z-index: 110;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    p {
+      text-align: center;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      text-align: center;
+      color: #273B50;
+    }
+
+    .check-ethernet-btn {
+      align-items: center;
+      padding: 12px 20px;
+      width: 234px;
+      height: 41px;
+      background: #5375ED;
+      border: 0.5px solid #C7D5E9;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      color: #D9E4F1;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+
+  .success, .reject {
+    width: 328px;
+    height: 232px;
+    left: calc(50% - 170px);
+  }
+}
+
