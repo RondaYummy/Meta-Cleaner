@@ -132,7 +132,6 @@ export class AppComponent implements OnInit {
   }
 
   installPwa(): void {
-    console.log(this.promptEvent, 'promptEvent');
     this.promptEvent.prompt();
   }
 
@@ -149,11 +148,16 @@ export class AppComponent implements OnInit {
 
   changeCamera() {
     if (this.handleCameraPosition === 'user') {
-      console.log('user');
       this.handleCameraPosition = 'environment';
+      this.stream.getTracks().forEach(function (track: any) {
+        track.stop();
+      });
       this.takePhotoUser();
     } else {
       this.handleCameraPosition = 'user';
+      this.stream.getTracks().forEach(function (track: any) {
+        track.stop();
+      });
       this.takePhotoUser();
     }
   }
@@ -185,7 +189,7 @@ export class AppComponent implements OnInit {
         });
       })
       .catch(function (error: any) {
-        console.log('".takePhoto(): error: ', error);
+        console.log('"takePhoto: error: ', error);
       });
   }
 
