@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   handleCameraPosition: 'user' | 'environment' = 'user';
+  supportedFacingMode = navigator.mediaDevices.getSupportedConstraints().facingMode;
 
   takenPhotos: Array<string> = [];
   takenSelectedPhotos: Array<string> = [];
@@ -148,6 +149,7 @@ export class AppComponent implements OnInit {
 
   changeCamera() {
     if (this.handleCameraPosition === 'user') {
+      console.log('user');
       this.handleCameraPosition = 'environment';
       this.closeWindowForTakent();
       this.takePhotoUser();
