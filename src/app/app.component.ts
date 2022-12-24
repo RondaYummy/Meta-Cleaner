@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import * as ConvertImage from 'js-convert-images';
+import * as ConvertImage from './js-convert-images';
 import { environment } from 'src/environments/environment';
 
 @Component({
