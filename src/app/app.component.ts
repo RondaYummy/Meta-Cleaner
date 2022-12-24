@@ -138,9 +138,7 @@ export class AppComponent implements OnInit {
   handleVideo() {
     const constraints = {
       video: {
-        facingMode: {
-          exact: this.handleCameraPosition,
-        }
+        facingMode: this.handleCameraPosition
       }
     }
     return constraints
