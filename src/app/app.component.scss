@@ -190,8 +190,9 @@
   text-align: center;
   color: #D9E4F1;
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   cursor: pointer;
+  z-index: 200;
 }
 
 ::-webkit-scrollbar {
@@ -229,7 +230,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   margin-top: 27px;
 
   .taken-photo-item {
@@ -265,5 +266,10 @@
   position: fixed;
   background-color: #F3F8FC;
   width: 100%;
-  z-index: 11;
+  z-index: 199;
+}
+
+video {
+  display: none;
+  max-height: 500px;
 }
