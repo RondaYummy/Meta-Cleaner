@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   isWebVersion = !window.matchMedia('(display-mode: standalone)').matches;
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
+  handleCameraPosition: 'user' | 'enviroment' = 'user';
 
   takenPhotos: Array<string> = [];
   takenSelectedPhotos: Array<string> = [];
@@ -134,10 +135,29 @@ export class AppComponent implements OnInit {
     this.promptEvent.prompt();
   }
 
+  handleVideo() {
+    const constraints = {
+      video: {
+        facingMode: {
+          exact: this.handleCameraPosition,
+        }
+      }
+    }
+    return constraints
+  };
+
+  changeCamera() {
+    if (this.handleCameraPosition === 'user') {
+      this.handleCameraPosition = 'enviroment';
+      this.takePhotoUser();
+    } else {
+      this.handleCameraPosition = 'user';
+      this.takePhotoUser();
+    }
+  }
+
   async takePhotoUser() {
-    this.stream = await navigator.mediaDevices.getUserMedia({
-      video: true,
-    });
+    this.stream = await navigator.mediaDevices.getUserMedia(this.handleVideo());
     const videoTracks = this.stream.getVideoTracks();
     const track = videoTracks[0];
     console.log(`Getting video from: ${track.label}`);

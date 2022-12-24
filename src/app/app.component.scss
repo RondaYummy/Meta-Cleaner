@@ -273,3 +273,13 @@ video {
   display: none;
   max-height: 500px;
 }
+
+.change-camera-box {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border-radius: 3px;
+  background-color: #F3F8FC;
+  padding: 5px;
+  cursor: pointer;
+}
