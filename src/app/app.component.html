@@ -9,8 +9,28 @@
     <p>Please install the app first to continue.</p>
   </div>
 
-  <video #video name="video" autoplay style="display: none" class="mb-20"></video>
-  <div *ngIf="stream && !photosWithClearMetadata?.length" class="taken-photo-box">
+  <div class="video-box">
+    <video
+      #video
+      name="video"
+      autoplay
+      style="display: none"
+      class="mb-20"
+    ></video>
+    <button
+      type="button"
+      class="take-photo-btn"
+      (click)="takePhoto()"
+      *ngIf="stream && !photosWithClearMetadata?.length"
+    >
+      Зробити фото
+    </button>
+  </div>
+
+  <div
+    *ngIf="stream && !photosWithClearMetadata?.length"
+    class="taken-photo-box"
+  >
     <div class="selected-taken-photos">
       <div>
         Обрано {{ takenSelectedPhotos.length || 0 }} з
@@ -35,13 +55,10 @@
       </div>
     </div>
 
-    <button type="button" class="take-photo-btn" (click)="takePhoto()">
-      Зробити фото
-    </button>
     <button
       type="button"
       class="clear-photo-btn"
-      *ngIf="takenPhotos.length && takenPhotos.length > 0"
+      *ngIf="takenSelectedPhotos?.length && takenSelectedPhotos.length > 0"
       (click)="clearMetadataTakePhoto()"
     >
       Очистити метадані
@@ -135,4 +152,9 @@
 >
 </app-ethernet-popups>
 <label for="video-input">Video input</label>
-<input name="video-input" id="video-input" type="file" accept="image/*;capture=camera" />
+<input
+  name="video-input"
+  id="video-input"
+  type="file"
+  accept="image/*;capture=camera"
+/>
