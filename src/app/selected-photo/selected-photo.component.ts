@@ -23,7 +23,7 @@ export class SelectedPhotoComponent implements OnInit {
   selectChanged(position: string) {
     this.fileList = [];
     this.savedImagesWithoutWatermark.forEach((file, index) => {
-      watermark([file, 'https://i.ibb.co/pny3tVS/logo.png'])
+      watermark([file, '../../assets/images/logo.png'])
         .dataUrl(watermark.image[position](0.5))
         .then((img: any) => {
           this.fileList.push(img);
