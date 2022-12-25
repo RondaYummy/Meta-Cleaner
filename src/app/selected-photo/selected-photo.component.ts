@@ -26,7 +26,6 @@ export class SelectedPhotoComponent implements OnInit {
       watermark([file, '../../assets/images/logo.png'], { type: 'image/jpeg' })
         .dataUrl(watermark.image[position](0.5))
         .then((img: any) => {
-          console.log(img, 'img');
           this.fileList.push(img);
         });
     });
