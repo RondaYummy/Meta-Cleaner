@@ -14,6 +14,30 @@
     </div>
   </div>
 
+  <div class="watermark-box">
+    <div class="checkbox-row">
+      <input
+        type="checkbox"
+        [checked]="pasteWatermark"
+        (change)="changeCheckbox()"
+      />
+      <label for="scales">Добавити наш водяний знак на ваші фото?</label>
+    </div>
+
+    <select
+      #selectedCategory
+      *ngIf="pasteWatermark"
+      (change)="selectChanged(selectedCategory.value)"
+      [value]="selectValue"
+    >
+      <option value="lowerLeft">Лівий нижній кут</option>
+      <option value="lowerRight">Правий нижній кут</option>
+      <option value="upperRight">Правий верхній кут</option>
+      <option value="upperLeft">Лівий верхній кут</option>
+      <option value="center">По центру</option>
+    </select>
+  </div>
+
   <button type="button" class="clear-metadata-btn" (click)="clearMetadata()">
     Очистити метадані {{ fileList.length }} фото
   </button>
