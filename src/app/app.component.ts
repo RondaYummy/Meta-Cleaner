@@ -78,11 +78,10 @@ export class AppComponent implements OnInit {
   handleFiles(event: Event) {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
-    if (files.length < 10) {
       Array.from(files).forEach((file: File) => {
         this.uploadFile(file);
       });
-    }
+      target.value = '';
   }
 
   closeSelected(event: boolean) {
