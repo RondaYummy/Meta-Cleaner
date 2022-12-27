@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
   selectedPhotos: Array<string> = [];
   continueListPhotos: Array<string> = [];
   handleCameraPosition: 'user' | 'environment' = 'user';
-  supportedFacingMode =
-    navigator.mediaDevices.getSupportedConstraints().facingMode;
+  supportedFacingMode = navigator.mediaDevices.getSupportedConstraints().facingMode;
 
   takenPhotos: Array<string> = [];
   takenSelectedPhotos: Array<string> = [];
@@ -39,19 +38,6 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-      const handler = (e: any) => {
-        if (e.scale !== 1) {
-          e.preventDefault();
-        }
-      };
-
-      window.addEventListener('touchmove', handler, { passive: false });
-      window.document.addEventListener('touchmove', handler, {
-        passive: false,
-      });
-    }
-
     window.addEventListener('offline', () => {
       this.isOnline = false;
     });
@@ -100,10 +86,10 @@ export class AppComponent implements OnInit {
   handleFiles(event: Event) {
     const target = event.target as HTMLInputElement;
     const files = target.files as FileList;
-    Array.from(files).forEach((file: File) => {
-      this.uploadFile(file);
-    });
-    target.value = '';
+      Array.from(files).forEach((file: File) => {
+        this.uploadFile(file);
+      });
+      target.value = '';
   }
 
   closeSelected(event: boolean) {
@@ -161,11 +147,11 @@ export class AppComponent implements OnInit {
       video: {
         facingMode: {
           exact: this.handleCameraPosition,
-        },
-      },
-    };
-    return constraints;
-  }
+        }
+      }
+    }
+    return constraints
+  };
 
   changeCamera() {
     if (this.handleCameraPosition === 'user') {
