@@ -45,11 +45,19 @@ export class AppComponent implements OnInit {
       this.isOnline = true;
     });
 
+    const listener = ({ matches }: any) => {
+      if (!matches) {
+        window
+          .matchMedia('(display-mode: standalone)')
+          .removeEventListener('change', listener);
+      } else {
+        this.isWebVersion = !matches;
+      }
+    };
+
     window
       .matchMedia('(display-mode: standalone)')
-      .addEventListener('change', ({ matches }) => {
-        this.isWebVersion = !matches;
-      });
+      .addEventListener('change', listener);
 
     console.group('Ukraine');
     console.info(
