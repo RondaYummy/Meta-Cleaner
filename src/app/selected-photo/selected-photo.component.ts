@@ -12,12 +12,14 @@ export class SelectedPhotoComponent implements OnInit {
   @Output() clear = new EventEmitter<Array<string>>();
   @Input() pasteWatermark = false;
   @Input() selectValue: string = 'lowerRight';
+  savedImages: Array<string>;
   savedImagesWithoutWatermark: Array<string>;
 
   constructor() {}
 
   ngOnInit() {
     this.savedImagesWithoutWatermark = this.fileList;
+    this.savedImages = this.fileList;
   }
 
   selectChanged(position: string) {
@@ -31,11 +33,16 @@ export class SelectedPhotoComponent implements OnInit {
     });
   }
 
-  changeCheckbox() {
+  addWatermark() {
     this.pasteWatermark = !this.pasteWatermark;
     if (this.pasteWatermark) {
       this.selectChanged('lowerRight');
     }
+  }
+
+  removeWatermark() {
+    this.pasteWatermark = !this.pasteWatermark;
+    this.fileList = this.savedImages
   }
 
   closeSelected() {
