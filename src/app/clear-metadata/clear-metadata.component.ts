@@ -164,21 +164,28 @@ export class ClearMetadataComponent implements OnInit {
 
   ngOnInit(): void {
     const converter: any = new ConvertImage.ConvertImage();
-    const options = {
-      name: 'taken-image',
+    const optionsJpeg = {
+      name: `cleared-image-${Date.now()}`,
       download: false,
       width: 1280,
       height: 1280,
       type: 'jpeg',
     };
-    const regEx = new RegExp('jpeg', 'gi');
-    for (let index = 0; index < this.photoList.length; index++) {
+
+    let countsImages = 0;
+    for (let index = 0; index <= this.photoList.length; index++) {
       const element = this.photoList[index];
-      if (!regEx.test(element)) {
-        converter.convertImageFromUrl(element, options).then((data: any) => {
-          this.photoList[index] = data;
+
+      converter
+        .convertImageFromUrl(element, optionsJpeg)
+        .then(async (jpeg: string) => {
+          this.photoList[index] = jpeg;
+          countsImages += 1;
+
+          if (countsImages === this.photoList.length) {
+            this.clearMetadata();
+          }
         });
-      }
     }
 
     this.replaceZerothStrings.forEach((prop: string) => {
@@ -192,10 +199,6 @@ export class ClearMetadataComponent implements OnInit {
     this.replaceGPSStrings.forEach((prop) => {
       this.gps[piexif.GPSIFD[prop]] = this.securedString;
     });
-
-    setTimeout(() => {
-      this.clearMetadata(); // FIXME whi its work only with setTimeout 0?
-    }, 0);
   }
 
   cancelClearMetadata() {

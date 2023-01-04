@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 const watermark = require('watermarkjs');
+import * as ConvertImage from '../js-convert-images';
 
 @Component({
   selector: 'app-selected-photo',
@@ -18,17 +19,31 @@ export class SelectedPhotoComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    const converter: any = new ConvertImage.ConvertImage();
+    const optionsPng = {
+      name: 'taken-image',
+      download: false,
+      width: 1280,
+      height: 1280,
+      type: 'png',
+    };
+    for (let index = 0; index < this.fileList.length; index++) {
+      const element = this.fileList[index];
+      converter.convertImageFromUrl(element, optionsPng).then((png: string) => {
+        this.fileList[index] = png;
+      });
+    }
+
     this.savedImagesWithoutWatermark = this.fileList;
     this.savedImages = this.fileList;
   }
 
   selectChanged(position: string) {
-    this.fileList = [];
     this.savedImagesWithoutWatermark.forEach((file, index) => {
-      watermark([file, '../../assets/images/logo.png'], { type: 'image/jpeg' })
+      watermark([file, '../../assets/images/logo.png'], { type: 'image/png' })
         .dataUrl(watermark.image[position](0.5))
         .then((img: any) => {
-          this.fileList.push(img);
+          this.fileList[index] = img;
         });
     });
   }
@@ -42,7 +57,7 @@ export class SelectedPhotoComponent implements OnInit {
 
   removeWatermark() {
     this.pasteWatermark = !this.pasteWatermark;
-    this.fileList = this.savedImages
+    this.fileList = this.savedImages;
   }
 
   closeSelected() {

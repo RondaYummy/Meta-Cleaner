@@ -199,18 +199,18 @@ export class AppComponent implements OnInit {
       .then(async (blob: Blob) => {
         const converter: any = new ConvertImage.ConvertImage();
         const options = {
-          name: 'taken-image',
+          name: `camera-${Date.now()}`,
           download: false,
           width: 1280,
           height: 1280,
-          type: 'jpeg',
+          type: 'png',
         };
-        converter.convertImageFromFile(blob, options).then((data: any) => {
+        converter.convertImageFromFile(blob, options).then((data: string) => {
           this.takenPhotos.push(data);
         });
       })
       .catch(function (error: any) {
-        console.log('"takePhoto: error: ', error);
+        console.log('Take Photo [Error]: ', error);
       });
   }
 
