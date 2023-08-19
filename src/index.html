@@ -1,19 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MetaCleaner</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shirnk-to-fit=no">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.ico">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
-  <meta name="description" content="MetaCleaner">
-  <meta name="keywords" content="Meta, MetaCleaner, CyberRegiment">
-</head>
-<body>
-  <app-root></app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>MetaCleaner</title>
+    <base href="/" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shirnk-to-fit=no"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="favicon.ico" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+    <meta name="description" content="MetaCleaner" />
+    <meta name="keywords" content="Meta, MetaCleaner, CyberRegiment" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <noscript
+      >Please enable JavaScript to continue using this application.</noscript
+    >
+  </body>
+
+  <script>
+    /**
+     * we are locking mobile devices orientation to portrait mode only
+     */
+    var devWidth, devHeight;
+    window.addEventListener("load", function () {
+      devWidth = screen.width;
+      devHeight = screen.height;
+    });
+    window.addEventListener(
+      "orientationchange",
+      function () {
+        if (
+          devWidth < 768 &&
+          (window.orientation === 90 || window.orientation == -90)
+        ) {
+          document.body.style.width = devWidth + "px";
+          document.body.style.height = devHeight + "px";
+          document.body.style.transform = "rotate(90deg)";
+          document.body.style.transformOrigin =
+            "" + devHeight / 2 + "px " + devHeight / 2 + "px";
+        } else {
+          document.body.removeAttribute("style");
+        }
+      },
+      true
+    );
+  </script>
 </html>
