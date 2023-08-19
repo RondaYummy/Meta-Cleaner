@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     function deviceOrientation() {
       const body = document.body;
-      body.classList = '';
       switch (window.orientation) {
         case 90:
           body.classList.add('rotation90');
