@@ -1,6 +1,7 @@
 .fit-popup-backgroung {
   background: rgba(217, 228, 241, 0.1);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
   z-index: 100;
   position: absolute;
   top: 0;
@@ -11,7 +12,8 @@
     position: absolute;
     bottom: -15px;
     left: 0;
-    height: 360px;
+    max-height: 360px;
+    height: 100%;
     width: 100%;
     margin-left: -10px;
     background: #FFFFFF;

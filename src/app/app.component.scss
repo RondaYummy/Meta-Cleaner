@@ -271,9 +271,9 @@ body {
   -webkit-user-callout: none !important;
   -webkit-user-select: none !important;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
+  -ms-scroll-chaining: none;
+      overscroll-behavior: none;
 }
-
 * {
   touch-action: pan-y pan-x;
   -webkit-touch-callout: none !important;
@@ -281,4 +281,10 @@ body {
   -webkit-user-select: none !important;
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    orientation: portrait;
+  }
 }

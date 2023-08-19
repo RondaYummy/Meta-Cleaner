@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
     this.isOnline = event;
   }
 
-  uploadFile(file: File) {
+  async uploadFile(file: File) {
     const reader = new FileReader();
     reader.onload = () => {
       this.selectedPhotos.push(reader.result as string);
@@ -97,12 +97,16 @@ export class AppComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  handleFiles(event: Event) {
+  async handleFiles(event: Event) {
     const target = event.target as HTMLInputElement;
-    const files = target.files as FileList;
-    Array.from(files).forEach((file: File) => {
-      this.uploadFile(file);
-    });
+    let files = Array.from(target.files as FileList);
+    if (files?.length > 10) {
+      files = files.splice(0, 10);
+    }
+
+    for await (const file of files) {
+      await this.uploadFile(file);
+    }
     target.value = '';
   }
 
