@@ -283,8 +283,17 @@ body {
   -webkit-text-size-adjust: none !important;
 }
 
-@media screen and (max-width: 768px) {
-  body, html {
-    orientation: portrait;
+@media screen and (orientation: landscape) {
+  body {
+    width: 100vh;
+    height: 100vw;
+    transform-origin: 0 0;
   }
+}
+
+body.rotation-90 {
+  transform: rotate(90deg) translateY(-100%);
+}
+body.rotation90 {
+  transform: rotate(-90deg) translateX(-100%);
 }
