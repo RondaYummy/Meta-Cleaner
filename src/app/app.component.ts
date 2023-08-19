@@ -38,23 +38,23 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    function deviceOrientation() {
-      const body = document.body;
-      switch (window.orientation) {
-        case 90:
-          body.classList.add('rotation90');
-          break;
-        case -90:
-          body.classList.add('rotation-90');
-          break;
-        default:
-          body.classList.add('portrait');
-          break;
-      }
+  deviceOrientation() {
+    const body = document.body;
+    switch (window.orientation) {
+      case 90:
+        body.classList.add('rotation90');
+        break;
+      case -90:
+        body.classList.add('rotation-90');
+        break;
+      default:
+        body.classList.add('portrait');
+        break;
     }
-    window.addEventListener('orientationchange', deviceOrientation);
-    deviceOrientation();
+  }
+  ngOnInit() {
+    window.addEventListener('orientationchange', this.deviceOrientation);
+    this.deviceOrientation();
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       const handler = (e: any) => {
         if (e.scale !== 1) {
