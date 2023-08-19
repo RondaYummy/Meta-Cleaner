@@ -39,7 +39,9 @@ export class AppComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    screen.orientation.lock('landscape');
+    screen.orientation.lock('landscape').then(() => {
+      console.log('-- locked');
+    });
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       const handler = (e: any) => {
         if (e.scale !== 1) {
