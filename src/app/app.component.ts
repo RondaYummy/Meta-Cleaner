@@ -50,6 +50,13 @@ export class AppComponent implements OnInit {
           }
           const h1List = document.getElementsByClassName('no-orientation');
           h1List[0].className = '';
+        } else {
+          const bodies = document.getElementsByTagName('app-root') as any;
+          for (let i = 0; i < bodies.length; i++) {
+            bodies[i].style.display = 'block';
+          }
+          const h1List = document.getElementsByClassName('no-orientation');
+          h1List[0].className = 'no-orientation';
         }
       },
       false
