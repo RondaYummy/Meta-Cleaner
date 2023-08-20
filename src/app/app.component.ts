@@ -37,8 +37,18 @@ export class AppComponent implements OnInit {
   }
 
   constructor() {}
-
   ngOnInit() {
+    window.addEventListener(
+      'orientationEvent',
+      function () {
+        var orientation =
+          Math.abs(window.orientation) == 90 ? 'landscape' : 'portrait';
+        console.log(orientation, 'orientation');
+
+        // Применяем нужные нам стили
+      },
+      false
+    );
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       const handler = (e: any) => {
         if (e.scale !== 1) {

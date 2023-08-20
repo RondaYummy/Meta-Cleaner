@@ -274,6 +274,7 @@ body {
   -ms-scroll-chaining: none;
   overscroll-behavior: none;
 }
+
 * {
   touch-action: pan-y pan-x;
   -webkit-touch-callout: none !important;
@@ -281,4 +282,18 @@ body {
   -webkit-user-select: none !important;
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: none !important;
+}
+
+.no-orientation {
+  display: none;
+}
+
+@media (landscape) {
+  body {
+    display: none;
+  }
+
+  .no-orientation {
+    display: block;
+  }
 }
