@@ -10,17 +10,14 @@
   </div>
 
   <div class="video-box">
-    <div class="change-camera-box"
-         (click)="changeCamera()"
-         *ngIf="stream && !photosWithClearMetadata?.length && supportedFacingMode">
-         Змінити камеру
+    <div
+      class="change-camera-box"
+      (click)="changeCamera()"
+      *ngIf="stream && !photosWithClearMetadata?.length && supportedFacingMode"
+    >
+      Змінити камеру
     </div>
-    <video
-      #video
-      name="video"
-      autoplay
-      class="mb-20"
-    ></video>
+    <video #video name="video" autoplay class="mb-20"></video>
     <button
       type="button"
       class="take-photo-btn"
@@ -37,7 +34,8 @@
   >
     <div class="selected-taken-photos">
       <div>
-        Обрано {{ takenSelectedPhotos.length || 0 }} з {{ takenPhotos.length }} (max. {{ maxSelectedPhotoCount }})
+        Обрано {{ takenSelectedPhotos.length || 0 }} з
+        {{ takenPhotos.length }} (max. {{ maxSelectedPhotoCount }})
       </div>
 
       <img

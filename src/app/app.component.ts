@@ -39,13 +39,18 @@ export class AppComponent implements OnInit {
   constructor() {}
   ngOnInit() {
     window.addEventListener(
-      'orientationEvent',
+      'orientationchange',
       function () {
-        var orientation =
+        const orientation =
           Math.abs(window.orientation) == 90 ? 'landscape' : 'portrait';
-        console.log(orientation, 'orientation');
-
-        // Применяем нужные нам стили
+        if (orientation == 'landscape') {
+          const bodies = document.getElementsByTagName('app-root') as any;
+          for (let i = 0; i < bodies.length; i++) {
+            bodies[i].style.display = 'none';
+          }
+          const h1List = document.getElementsByClassName('no-orientation');
+          h1List[0].className = '';
+        }
       },
       false
     );

@@ -287,13 +287,3 @@ body {
 .no-orientation {
   display: none;
 }
-
-@media (landscape) {
-  body {
-    display: none;
-  }
-
-  .no-orientation {
-    display: block;
-  }
-}
