@@ -152,8 +152,9 @@
   (newIsOnline)="newIsOnline($event)"
 >
 </app-ethernet-popups>
-<label for="video-input">Video input</label>
+<label for="video-input" *ngIf="stream">Video input</label>
 <input
+  *ngIf="stream"
   name="video-input"
   id="video-input"
   type="file"
