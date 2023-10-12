@@ -13,8 +13,7 @@ export class SelectedPhotoComponent implements OnInit {
   @Output() clear = new EventEmitter<Array<string>>();
   @Input() pasteWatermark = false;
   @Input() selectValue: string = 'lowerRight';
-  savedImages: Array<string>;
-  savedImagesWithoutWatermark: Array<string>;
+  images: Array<string> = [];
 
   constructor() {}
 
@@ -33,19 +32,17 @@ export class SelectedPhotoComponent implements OnInit {
         this.fileList[index] = png;
       });
     }
-
-    this.savedImagesWithoutWatermark = this.fileList;
-    this.savedImages = this.fileList;
+    this.images = [...this.fileList];
   }
 
   selectChanged(position: string) {
-    this.savedImagesWithoutWatermark.forEach((file, index) => {
+    [...this.fileList].forEach((file, index) =>
       watermark([file, '../../assets/images/logo.png'], { type: 'image/png' })
         .dataUrl(watermark.image[position](0.5))
         .then((img: any) => {
-          this.fileList[index] = img;
-        });
-    });
+          this.images[index] = img;
+        })
+    );
   }
 
   addWatermark() {
@@ -57,7 +54,7 @@ export class SelectedPhotoComponent implements OnInit {
 
   removeWatermark() {
     this.pasteWatermark = !this.pasteWatermark;
-    this.fileList = this.savedImages;
+    this.images = [...this.fileList];
   }
 
   closeSelected() {
@@ -65,6 +62,6 @@ export class SelectedPhotoComponent implements OnInit {
   }
 
   clearMetadata() {
-    this.clear.emit(this.fileList);
+    this.clear.emit(this.images);
   }
 }

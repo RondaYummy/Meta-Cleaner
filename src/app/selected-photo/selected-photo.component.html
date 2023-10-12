@@ -9,7 +9,7 @@
   </div>
 
   <div class="file-list">
-    <div class="file-item" *ngFor="let file of fileList; let i = index">
+    <div class="file-item" *ngFor="let file of images; let i = index">
       <img [src]="file" />
     </div>
   </div>
@@ -44,6 +44,6 @@
   </div>
 
   <button type="button" class="clear-metadata-btn" (click)="clearMetadata()">
-    Очистити метадані {{ fileList.length }} фото
+    Очистити метадані {{ images.length }} фото
   </button>
 </div>

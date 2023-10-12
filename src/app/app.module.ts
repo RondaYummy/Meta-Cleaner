@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -9,6 +9,10 @@ import { SelectedPhotoComponent } from './selected-photo/selected-photo.componen
 import { SubmitSelectedPhotoComponent } from './submit-selected-photo/submit-selected-photo.component';
 import { ClearMetadataComponent } from './clear-metadata/clear-metadata.component';
 import { SuccessModalComponent } from './success-modal/success-modal.component';
+import { PwaPromptService } from './services/pwa-prompt.service';
+import { PromptComponent } from './components/prompt/prompt.component';
+
+const initializer = (pwaService: PwaPromptService) => () => pwaService.initPwaPrompt();
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +21,7 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
     SubmitSelectedPhotoComponent,
     ClearMetadataComponent,
     SuccessModalComponent,
+    PromptComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,9 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [],
+  providers: [
+      // {provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaPromptService], multi: true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

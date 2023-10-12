@@ -35,8 +35,9 @@ export class AppComponent implements OnInit {
   onbeforeinstallprompt(e: any) {
     this.promptEvent = e;
   }
-
-  constructor() {}
+  constructor(
+  ) {
+  }
   ngOnInit() {
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       const handler = (e: any) => {
@@ -72,16 +73,16 @@ export class AppComponent implements OnInit {
       .matchMedia('(display-mode: standalone)')
       .addEventListener('change', listener);
 
-    console.group('Ukraine');
-    console.info(
-      '%c        Все буде Україна!        ',
-      'background: #0057B8; font-size: 16px;font-weight: bold;color: white;'
-    );
-    console.info(
-      '%c  https://github.com/RondaYummy  ',
-      'background: #FFD700;  font-size: 16px;font-weight: bold;'
-    );
-    console.groupEnd();
+    // console.group('Ukraine');
+    // console.info(
+    //   '%c        Все буде Україна!        ',
+    //   'background: #0057B8; font-size: 16px;font-weight: bold;color: white;'
+    // );
+    // console.info(
+    //   '%c  https://github.com/RondaYummy  ',
+    //   'background: #FFD700;  font-size: 16px;font-weight: bold;'
+    // );
+    // console.groupEnd();
   }
 
   newIsOnline(event: boolean) {

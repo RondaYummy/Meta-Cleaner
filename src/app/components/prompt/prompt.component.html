@@ -1,0 +1,54 @@
+<ng-container *ngIf="showInstructions$ | async">
+  <ng-container [ngSwitch]="deviceType">
+    <ng-container *ngSwitchCase="'android'">
+      <button mat-button (click)="installPwa.emit()" class="install-button">
+        Додати на головний екран
+      </button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blink'">
+      <!-- Chrome, Opera -->
+      <button mat-button (click)="installPwa.emit()" class="install-button">
+        Додати на головний екран
+      </button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'firefox'">
+      <div class="basic-text">
+        Щоб встановити PWA у браузері Firefox потрібно інсталювати розширення
+        <a
+          href="https://addons.mozilla.org/en-US/firefox/addon/pwas-for-firefox/"
+          >Розширення</a
+        >
+        і після цього оновити сторінку
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'edge'">
+      <button mat-button (click)="installPwa.emit()" class="install-button">
+        Додати на головний екран
+      </button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'ios'">
+      <div class="ios-prompt">
+        <div>
+          Щоб інсталювати цей застосунок на вашому пристрої, натисніть кнопку
+          <img src="../../../assets/images/ios-menu-btn.png" />
+        </div>
+        <div>
+          а потім кнопку "Додати на головний екран"
+          <img src="../../../assets/images/ios-add-btn.png" />
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'safari'">
+      <div class="basic-text">
+        Safari не підтримує встановлення PWA, використайте будь-ласка інший
+        браузер (Chrome, Firefox)
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'webkit'">
+      <div class="basic-text">
+        Браузери на базі Webkit не підтримує встановлення PWA, використайте
+        будь-ласка інший браузер (Chrome, Firefox)
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>

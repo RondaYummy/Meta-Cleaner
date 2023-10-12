@@ -3,10 +3,7 @@
 </header>
 <div class="main-block">
   <div class="web-version" *ngIf="isWebVersion">
-    <button (click)="installPwa()">Встановити</button>
-    <span>It's web version site.</span>
-
-    <p>Please install the app first to continue.</p>
+    <app-prompt (installPwa)="installPwa()"></app-prompt>
   </div>
 
   <div class="video-box">

@@ -1,0 +1,52 @@
+.android-prompt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ios-prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  .close-ios-inv {
+    position: absolute;
+    right: 0px;
+    top: 0;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 10px 25px 0;
+    line-height: 22px;
+    mat-icon {
+      position: relative;
+      top: -7px;
+    }
+  }
+  img {
+    display: inline;
+  }
+}
+
+.basic-text {
+  line-height: 22px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.install-button {
+  padding: 0 20px;
+  height: 41px;
+  background: #5375ED;
+  border: 0.5px solid #C7D5E9;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #D9E4F1;
+  cursor: pointer;
+}
