@@ -10,9 +10,11 @@ import { DeviceType } from '../entities';
 export class PwaPromptService {
   private promptEvent: any;
   deviceType$ = new Subject<DeviceType>();
+  platform$ = new Subject<Platform>();
   constructor(private platform: Platform) {}
 
   initPwaPrompt() {
+    this.platform$.next(this.platform);
     let deviceType: DeviceType;
     if (this.platform.ANDROID) {
       window.addEventListener('beforeinstallprompt', (event: any) => {
@@ -22,8 +24,7 @@ export class PwaPromptService {
         this.deviceType$.next(deviceType);
         this.openPromptComponent(deviceType);
       });
-    }
-    if (this.platform.IOS) {
+    } else if (this.platform.IOS) {
       const isInStandaloneMode =
         'standalone' in window.navigator &&
         window.matchMedia('(display-mode: standalone)').matches;
@@ -32,11 +33,10 @@ export class PwaPromptService {
         this.openPromptComponent(deviceType);
         this.deviceType$.next(deviceType);
       }
-    }
-    if (this.platform.isBrowser) {
+    } else if (this.platform.isBrowser) {
       deviceType = 'browser';
-      if (this.platform.SAFARI) {
-        deviceType = 'safari';
+      if (this.platform.WEBKIT) {
+        deviceType = 'webkit';
       }
 
       if (this.platform.EDGE) {
@@ -51,12 +51,12 @@ export class PwaPromptService {
         deviceType = 'firefox';
       }
 
-      if (this.platform.WEBKIT) {
-        deviceType = 'webkit';
-      }
-
       if (this.platform.BLINK) {
         deviceType = 'blink';
+      }
+
+      if (this.platform.SAFARI) {
+        deviceType = 'safari';
       }
       this.deviceType$.next(deviceType);
       this.openPromptComponent(deviceType);

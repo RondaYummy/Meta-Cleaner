@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { DeviceType } from 'src/app/entities';
@@ -13,6 +14,7 @@ export class PromptComponent implements OnInit {
   title: string;
   deviceType: DeviceType;
   message: string;
+  platform: Platform;
   showInstructions$ = new BehaviorSubject<boolean>(false);
   private _unsubscribe$ = new Subject<void>();
   private readonly _pwaPromptService = inject(PwaPromptService);
@@ -25,6 +27,9 @@ export class PromptComponent implements OnInit {
         this.deviceType = res;
         this.showInstructions$.next(true);
       });
+    this._pwaPromptService.platform$.asObservable().subscribe((res) => {
+      this.platform = res;
+    });
     this._pwaPromptService.initPwaPrompt();
   }
 }

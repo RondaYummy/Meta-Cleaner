@@ -36,12 +36,25 @@
           а потім кнопку "Додати на головний екран"
           <img src="../../../assets/images/ios-add-btn.png" />
         </div>
+        <div>
+          Якщо такого пункту немає, то спробуйте з іншого браузера, наприклад Google Chrome
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'safari'">
       <div class="basic-text">
-        Safari не підтримує встановлення PWA, використайте будь-ласка інший
-        браузер (Chrome, Firefox)
+        <div class="ios-prompt">
+          <div>
+            Щоб інсталювати цей застосунок на вашому пристрої, натисніть кнопку
+            <img src="../../../assets/images/ios-menu-btn.png" />
+          </div>
+          <div>
+            а потім кнопку "Додати на головний екран" чи "Додати в Dock"
+          </div>
+          <div>
+            Якщо такого пункту немає, то спробуйте з іншого браузера, наприклад Google Chrome
+          </div>
+        </div>
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'webkit'">
